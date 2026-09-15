@@ -18,7 +18,10 @@
     h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
     p { margin: 0; color: #4b5563; font-size: 1.1rem; }
     .logo { width: min(12rem, 30vw); height: auto; }
-    ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+    .group + .group { margin-top: 2.5rem; }
+    h2 { margin: 0 0 1rem; padding-bottom: .55rem; border-bottom: .25rem solid #0089b2; color: #007394; font-size: 1.6rem; }
+    .group.do h2 { border-color: #c51a4a; color: #a4133d; }
+    .brick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
     a { --accent: #0089b2; display: grid; grid-template-rows: 11rem auto; overflow: hidden; border-bottom: .55rem solid var(--accent); border-radius: .65rem; color: inherit; background: white; box-shadow: 0 .2rem .75rem rgb(0 0 0 / 9%); text-decoration: none; }
     a.do { --accent: #c51a4a; }
     a:hover, a:focus-visible { transform: translateY(-2px); box-shadow: 0 .4rem 1.1rem rgb(0 0 0 / 14%); outline: .2rem solid #0089b2; outline-offset: .15rem; }
@@ -39,15 +42,23 @@
       </div>
       <img class="logo" src="button/assets/rpf-logo-lockup.png" alt="Raspberry Pi Foundation">
     </header>
-    <ul>
-      <li><a href="button/button.html"><img class="thumbnail" src="button/images/component-button.png" alt="Tactile push button"><span class="card-copy"><span class="name">Button</span><span class="strand">Detect</span></span></a></li>
-      <li><a class="do" href="buzzer/buzzer.html"><img class="thumbnail" src="buzzer/images/component-buzzer.png" alt="Piezo buzzer"><span class="card-copy"><span class="name">Buzzer</span><span class="strand">Do</span></span></a></li>
-      <li><a href="distance/distance.html"><img class="thumbnail" src="distance/images/component-distance.png" alt="Ultrasonic distance sensor"><span class="card-copy"><span class="name">Distance sensor</span><span class="strand">Detect</span></span></a></li>
-      <li><a href="ldr/ldr.html"><img class="thumbnail" src="ldr/images/component-ldr.png" alt="Light-dependent resistor"><span class="card-copy"><span class="name">LDR</span><span class="strand">Detect</span></span></a></li>
-      <li><a class="do" href="led/led.html"><img class="thumbnail" src="led/images/component-led.png" alt="Red light-emitting diode"><span class="card-copy"><span class="name">LED</span><span class="strand">Do</span></span></a></li>
-      <li><a href="pir/pir.html"><img class="thumbnail" src="pir/images/component-pir.png" alt="PIR motion sensor"><span class="card-copy"><span class="name">PIR</span><span class="strand">Detect</span></span></a></li>
-      <li><a href="potentiometer/potentiometer.html"><img class="thumbnail" src="potentiometer/images/component-potentiometer.png" alt="Blue trimpot potentiometer"><span class="card-copy"><span class="name">Potentiometer</span><span class="strand">Detect</span></span></a></li>
-    </ul>
+    <section class="group" aria-labelledby="detect-heading">
+      <h2 id="detect-heading">Detect</h2>
+      <ul class="brick-grid">
+        <li><a href="button/button.html"><img class="thumbnail" src="button/images/component-button.png" alt="Tactile push button"><span class="card-copy"><span class="name">Button</span><span class="strand">Detect</span></span></a></li>
+        <li><a href="ldr/ldr.html"><img class="thumbnail" src="ldr/images/component-ldr.png" alt="Light-dependent resistor"><span class="card-copy"><span class="name">LDR</span><span class="strand">Detect</span></span></a></li>
+        <li><a href="distance/distance.html"><img class="thumbnail" src="distance/images/component-distance.png" alt="Ultrasonic distance sensor"><span class="card-copy"><span class="name">Distance sensor</span><span class="strand">Detect</span></span></a></li>
+        <li><a href="pir/pir.html"><img class="thumbnail" src="pir/images/component-pir.png" alt="PIR motion sensor"><span class="card-copy"><span class="name">PIR</span><span class="strand">Detect</span></span></a></li>
+        <li><a href="potentiometer/potentiometer.html"><img class="thumbnail" src="potentiometer/images/component-potentiometer.png" alt="Blue trimpot potentiometer"><span class="card-copy"><span class="name">Potentiometer</span><span class="strand">Detect</span></span></a></li>
+      </ul>
+    </section>
+    <section class="group do" aria-labelledby="do-heading">
+      <h2 id="do-heading">Do</h2>
+      <ul class="brick-grid">
+        <li><a class="do" href="led/led.html"><img class="thumbnail" src="led/images/component-led.png" alt="Red light-emitting diode"><span class="card-copy"><span class="name">LED</span><span class="strand">Do</span></span></a></li>
+        <li><a class="do" href="buzzer/buzzer.html"><img class="thumbnail" src="buzzer/images/component-buzzer.png" alt="Piezo buzzer"><span class="card-copy"><span class="name">Buzzer</span><span class="strand">Do</span></span></a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>
