@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buzzer Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Buzzer</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Sound</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A buzzer makes a sound the moment your code switches it on.</p>          <p>An active buzzer has its tone built in, so it beeps at one fixed pitch. You switch it on and off rather than choosing notes.</p>          <p>Your projects can use it for an alarm, a warning, a countdown, or a fanfare when somebody wins.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-smoke-alarm.png" alt="A white smoke alarm mounted on a ceiling" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Smoke alarm</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Smoke in the air</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>There is a fire</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Sound the alarm</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-buzz-wire.png" alt="A homemade buzz wire game with a bent wire and a loop on a stick" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Buzz wire game</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Loop touches wire</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>A wobble, so out</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Buzz loudly</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-buzzer.png" alt="A 12 mm black active buzzer with a vent hole on top and two pins" />
+        </div>
+
+        <div class="part-strip" aria-label="Buzzer parts">          <div class="part"><strong>+ leg</strong><span>Longer, to GPIO</span></div>          <div class="part"><strong>− leg</strong><span>Shorter, to GND</span></div>          <div class="part"><strong>Vent</strong><span>Sound comes out</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Buzzer &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 27">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import Buzzer
+
+buzzer = Buzzer(12)
+
+buzzer.on()</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Buzzer
+
+buzzer = Buzzer(16)
+
+buzzer.on()</code></pre>
+          </section>        </div>        <div class="note">Also <code class="inline-code">buzzer.off()</code>, <code class="inline-code">buzzer.toggle()</code> and <code class="inline-code">buzzer.beep()</code>. Give <code class="inline-code">beep()</code> an <code class="inline-code">on_time</code> and an <code class="inline-code">off_time</code> to set the rhythm.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-buzzer.png" alt="Raspberry Pi 5 wired to an active buzzer on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>GPIO 12</strong> &rarr; <strong>+</strong> buzzer <strong>−</strong> &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-buzzer.png" alt="Raspberry Pi Pico wired to an active buzzer on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>GP16</strong> &rarr; <strong>+</strong> buzzer <strong>−</strong> &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Buzzer &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build Lab Skill Bricks</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+      background: #f3f4f6;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: min(70rem, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0 4rem; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+    h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
+    p { margin: 0; color: #4b5563; font-size: 1.1rem; }
+    .logo { width: min(12rem, 30vw); height: auto; }
+    ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+    a { display: block; min-height: 7rem; padding: 1.4rem; border-left: .55rem solid #0089b2; border-radius: .65rem; color: inherit; background: white; box-shadow: 0 .2rem .75rem rgb(0 0 0 / 9%); font-size: 1.35rem; font-weight: 700; text-decoration: none; }
+    a:hover, a:focus-visible { transform: translateY(-2px); box-shadow: 0 .4rem 1.1rem rgb(0 0 0 / 14%); outline: .2rem solid #0089b2; outline-offset: .15rem; }
+    a span { display: block; margin-top: .65rem; color: #007394; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+    @media (max-width: 36rem) { header { align-items: flex-start; flex-direction: column; } .logo { width: 10rem; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Build Lab Skill Bricks</h1>
+        <p>Component guides for Raspberry Pi and Raspberry Pi Pico.</p>
+      </div>
+      <img class="logo" src="button/assets/rpf-logo-lockup.png" alt="Raspberry Pi Foundation">
+    </header>
+    <ul>
+      <li><a href="button/button.html">Button<span>Detect</span></a></li>
+      <li><a href="buzzer/buzzer.html">Buzzer<span>Do</span></a></li>
+      <li><a href="distance/distance.html">Distance sensor<span>Detect</span></a></li>
+      <li><a href="ldr/ldr.html">LDR<span>Detect</span></a></li>
+      <li><a href="led/led.html">LED<span>Do</span></a></li>
+      <li><a href="pir/pir.html">PIR<span>Detect</span></a></li>
+      <li><a href="potentiometer/potentiometer.html">Potentiometer<span>Detect</span></a></li>
+    </ul>
+  </main>
+</body>
+</html>

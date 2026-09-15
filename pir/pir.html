@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIR Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>PIR</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>            <span class="tag">Motion</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A PIR spots movement nearby, such as somebody walking past.</p>          <p>PIR stands for passive infrared. It watches the warmth that bodies give off and reports when that warmth moves, so it notices people and animals rather than furniture.</p>          <p>Your projects can use it to wake something up the moment somebody arrives, and go quiet again when they leave.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-burglar-alarm.png" alt="A white PIR alarm sensor mounted in the corner of a room" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Burglar alarm</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Movement in the room</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Nobody should be in</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Raise the alarm</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-sibling-alarm.png" alt="A homemade PIR alarm taped by a bedroom door with a warning sign" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Sibling alarm</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Movement at the door</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Someone is coming</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Sound the warning</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-pir.png" alt="A PIR motion sensor with a white domed lens on a small circuit board" />
+        </div>
+
+        <div class="part-strip" aria-label="PIR parts">          <div class="part"><strong>Dome</strong><span>Wide-angle lens</span></div>          <div class="part"><strong>VCC</strong><span>Power, 5V</span></div>          <div class="part"><strong>OUT</strong><span>High on movement</span></div>          <div class="part"><strong>GND</strong><span>Ground</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">PIR &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 33">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import MotionSensor
+
+pir = MotionSensor(4)
+
+moved = pir.motion_detected</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import MotionSensor
+
+pir = MotionSensor(16)
+
+moved = pir.motion_detected</code></pre>
+          </section>        </div>        <div class="note"><code class="inline-code">moved</code> is True or False. Also <code class="inline-code">pir.when_motion</code> and <code class="inline-code">pir.when_no_motion</code> to run a function the moment it changes. Most boards carry two dials that set how sensitive it is and how long OUT stays high.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-pir.png" alt="PIR motion sensor wired straight onto a Raspberry Pi 5 header" />
+            </div>
+            <div class="pin-note"><strong>5V</strong> &nbsp;&middot;&nbsp; OUT <strong>GPIO 4</strong> &nbsp;&middot;&nbsp; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-pir.png" alt="PIR motion sensor wired to a Raspberry Pi Pico on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>VBUS</strong> &nbsp;&middot;&nbsp; OUT <strong>GP16</strong> &nbsp;&middot;&nbsp; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">PIR &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

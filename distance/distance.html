@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distance sensor Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Distance sensor</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>            <span class="tag">Distance</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A distance sensor measures how far away something is without touching it.</p>          <p>It works like a bat. One side sends out a click too high for you to hear, the other side listens for the echo, and the time it takes gives the distance.</p>          <p>Your projects can use it to react as something comes closer, or to measure a gap that keeps changing.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-parking-sensor.png" alt="A car reversing towards a garage wall with its parking sensors active" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Parking sensor</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Gap to the wall</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Closer than 30 cm</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Beep faster</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-air-harp.png" alt="A homemade air harp with an ultrasonic sensor on a cardboard stand" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Air harp</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>How far your hand is</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which note that is</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play the note</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-distance.png" alt="An ultrasonic distance sensor module with two round transducers and four pins" />
+        </div>
+
+        <div class="part-strip" aria-label="Distance sensor parts">          <div class="part"><strong>VCC</strong><span>Power, 3V3</span></div>          <div class="part"><strong>Trig</strong><span>Sends a click</span></div>          <div class="part"><strong>Echo</strong><span>Times the return</span></div>          <div class="part"><strong>GND</strong><span>Ground</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Distance sensor &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 35">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import DistanceSensor
+
+sensor = DistanceSensor(
+    echo=18, trigger=17
+)
+
+distance = sensor.distance</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import DistanceSensor
+
+sensor = DistanceSensor(
+    echo=15, trigger=13
+)
+
+distance = sensor.distance</code></pre>
+          </section>        </div>        <div class="note"><code class="inline-code">distance</code> is in metres and stops at 1. Pass <code class="inline-code">max_distance=2</code> to see further, or read <code class="inline-code">sensor.value</code> for 0 to 1. Power it from <strong>3V3</strong>, not 5V.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid rows">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi-srf05-direct.png" alt="Ultrasonic distance sensor wired straight onto a Raspberry Pi 5 header" />
+            </div>
+            <div class="pin-note">Trig <strong>GPIO 17</strong> &nbsp;&middot;&nbsp; Echo <strong>GPIO 18</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-srf05.png" alt="Ultrasonic distance sensor wired to a Raspberry Pi Pico on a breadboard" />
+            </div>
+            <div class="pin-note">Trig <strong>GP13</strong> &nbsp;&middot;&nbsp; Echo <strong>GP15</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Distance sensor &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

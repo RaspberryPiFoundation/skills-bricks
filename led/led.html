@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LED Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>LED</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Light</span>          </div>
+
+          <h2>What does it do?</h2>          <p>An LED is a tiny light that your code can switch on, switch off, or blink.</p>          <p>LED stands for light-emitting diode. It glows when electricity flows the right way through it, so the long leg and the short leg matter.</p>          <p>Your projects can use LEDs to show a warning, celebrate something, or tell people what is happening.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-brake-light.png" alt="The illuminated red brake light cluster on the back of a car at dusk" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Car brake light</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Brake pedal pressed</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>The car is slowing</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Light the red LED</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-monster-box.png" alt="A cardboard monster with a single glowing red LED as its eye" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">One-eyed monster box</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Box lid is opened</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Someone is snooping</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Glow the monster eye</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-led.png" alt="A 5 mm red LED with a long anode leg and a short cathode leg" />
+        </div>
+
+        <div class="part-strip" aria-label="LED parts">          <div class="part"><strong>Anode</strong><span>Long leg, to GPIO</span></div>          <div class="part"><strong>Cathode</strong><span>Short leg, to GND</span></div>          <div class="part"><strong>Lens</strong><span>Glows here</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">LED &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 24">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import LED
+
+led = LED(17)
+
+led.on()</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import LED
+
+led = LED(16)
+
+led.on()</code></pre>
+          </section>        </div>        <div class="note">Also <code class="inline-code">led.off()</code>, <code class="inline-code">led.toggle()</code> and <code class="inline-code">led.blink()</code>. Give <code class="inline-code">blink()</code> an <code class="inline-code">on_time</code> and an <code class="inline-code">off_time</code> to set the flash speed.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-led.png" alt="Raspberry Pi 5 wired to a 220 ohm resistor and an LED on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>GPIO 17</strong> &rarr; 220 Ω &rarr; LED &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-led.png" alt="Raspberry Pi Pico wired to a 220 ohm resistor and an LED on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>GP16</strong> &rarr; 220 Ω &rarr; LED &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">LED &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potentiometer Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Potentiometer</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>            <span class="tag">Input</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A potentiometer lets your code read how far a knob has been turned.</p>          <p>This small version is called a trimpot. Turning the blue knob moves a contact called the wiper, changing the voltage your board reads.</p>          <p>Use it to choose a speed, a brightness or a sound. Turn gently and stop at the ends. The marking 103 means 10 kΩ.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-sensor-setting.png" alt="A blue trimpot on the circuit board inside an open industrial optical sensor" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Sensor sensitivity</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Knob position</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Set trigger level</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Adjust sensor response</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-alien-voice.png" alt="A homemade cardboard alien with a speaker mouth and a blue trimpot control" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Alien voice tuner</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Knob position</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Choose voice pitch</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Rumble or squeak</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-potentiometer.png" alt="A blue square 10 kilohm 3386P trimpot with a ribbed blue knob and three pins" />
+        </div>
+
+        <div class="part-strip" aria-label="Potentiometer parts">          <div class="part"><strong>Knob</strong><span>Turn to adjust</span></div>          <div class="part"><strong>Outer pair</strong><span>Pins 1 and 3</span></div>          <div class="part"><strong>Wiper</strong><span>Pin 2, offset</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Potentiometer &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 31">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import MCP3008
+
+pot = MCP3008(0, select_pin=22)
+
+setting = pot.value</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Pot
+
+pot = Pot(26)
+
+setting = pot.value</code></pre>
+          </section>        </div>        <div class="note"><code class="inline-code">setting</code> runs from 0 to 1. Read <code class="inline-code">pot.value</code> again after turning; <code class="inline-code">pot.voltage</code> gives volts. The Pi needs the MCP3008 converter shown. Power the trimpot and converter from <strong>3V3</strong>.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Pi 5 + MCP3008</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-potentiometer.png" alt="Raspberry Pi 5 connected to a 3.3 volt MCP3008 converter and a 3386P trimpot" />
+            </div>
+            <div class="pin-note">Wiper &rarr; <strong>CH0</strong>. CLK / DIN / DOUT / CS &rarr; <strong>GPIO 11 / 10 / 9 / 22</strong>. Chip notch faces right.</div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-potentiometer.png" alt="Raspberry Pi Pico connected to a 3386P trimpot with its offset wiper on GP26" />
+            </div>
+            <div class="pin-note">Pin <strong>1</strong> &rarr; <strong>GND</strong> · <strong>2</strong> (wiper) &rarr; <strong>GP26</strong> · <strong>3</strong> &rarr; <strong>3V3</strong>. Each pin has its own breadboard row.</div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Potentiometer &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>
