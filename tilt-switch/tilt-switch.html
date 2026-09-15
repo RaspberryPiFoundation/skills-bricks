@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tilt switch Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Tilt switch</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>            <span class="tag">Input</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A tilt switch changes state when it tips past a particular angle.</p>          <p>A tiny metal ball rolls inside and touches two contacts, completing the circuit.</p>          <p>It can detect that an object has been picked up, tipped over or opened.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-lid-alarm.png" alt="A storage box with an electronic sensor on its lid" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Box lid sensor</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Lid changes angle</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Box has opened</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Log or sound an alert</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-pencil-case.png" alt="A homemade pencil case that reacts when tipped" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Grumpy pencil case</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Case is tipped</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Pencils are escaping</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Make a grumpy noise</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-tilt-switch.png" alt="A small two-legged metal ball tilt switch" />
+        </div>
+
+        <div class="part-strip" aria-label="Tilt switch parts">          <div class="part"><strong>Metal can</strong><span>Contains the rolling ball</span></div>          <div class="part"><strong>Legs</strong><span>No polarity</span></div>          <div class="part"><strong>Angle</strong><span>Changes the contact</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Tilt switch &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 27">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import Button
+
+tilt = Button(23)
+
+tilted = tilt.is_pressed</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Switch
+
+tilt = Switch(16)
+
+tilted = tilt.is_closed</code></pre>
+          </section>        </div>        <div class="note">The reading may flicker while the ball rolls. Check it more than once before treating it as a definite tilt.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-tilt-switch.png" alt="Raspberry Pi 5 connected to a tilt switch on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>GPIO 23</strong> &rarr; tilt switch &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-tilt-switch.png" alt="Raspberry Pi Pico connected to a tilt switch on a breadboard" />
+            </div>
+            <div class="pin-note"><strong>GP16</strong> &rarr; tilt switch &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Tilt switch &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RGB LED Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>RGB LED</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Output</span>            <span class="tag">Light</span>          </div>
+
+          <h2>What does it do?</h2>          <p>An RGB LED puts red, green and blue lights inside one clear package.</p>          <p>Varying the brightness of the three colours mixes millions of possible colours.</p>          <p>A common-cathode LED has one shared negative leg and needs one resistor for each colour.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-status-light.png" alt="A multicolour indicator showing the state of a machine" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Status light</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read the machine state</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Choose a status colour</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Mix the LED colour</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-mood-crystal.png" alt="A glowing homemade crystal that changes colour with its mood" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Mood crystal</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read a mysterious input</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Pick the crystal's mood</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Glow that colour</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-rgb-led.png" alt="A clear common-cathode RGB LED with four legs" />
+        </div>
+
+        <div class="part-strip" aria-label="RGB LED parts">          <div class="part"><strong>Clear lens</strong><span>Contains three LEDs</span></div>          <div class="part"><strong>Long leg</strong><span>Common cathode</span></div>          <div class="part"><strong>R</strong><span>One 220 ohm resistor each</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">RGB LED &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 41">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import RGBLED
+
+light = RGBLED(red=17, green=27, blue=22)
+
+light.color = (1, 0, 1)</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import RGBLED
+
+light = RGBLED(red=15, green=13, blue=10)
+
+light.color = (255, 0, 255)</code></pre>
+          </section>        </div>        <div class="note">Pi colour values run from 0 to 1; picozero colour values run from 0 to 255. These examples make magenta.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-rgb-led.png" alt="Common-cathode RGB LED and three resistors connected to Raspberry Pi 5" />
+            </div>
+            <div class="pin-note">R &rarr; <strong>GPIO17</strong>, G &rarr; <strong>GPIO27</strong>, B &rarr; <strong>GPIO22</strong>; common &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-rgb-led.png" alt="Common-cathode RGB LED and three resistors connected to Raspberry Pi Pico" />
+            </div>
+            <div class="pin-note">R &rarr; <strong>GP15</strong>, G &rarr; <strong>GP13</strong>, B &rarr; <strong>GP10</strong>; common &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">RGB LED &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

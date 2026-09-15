@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toggle switch Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Toggle switch</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>            <span class="tag">Input</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A toggle switch stays in the position you move it to, unlike a push button.</p>          <p>Its centre COM leg connects to one outside leg in each position.</p>          <p>It is useful when a project needs a lasting on/off choice or two modes.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-mode-selector.png" alt="A control panel with a two-position mode switch" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Mode selector</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read the switch position</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Choose a mode</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Run that behaviour</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-business-lever.png" alt="An oversized homemade lever for choosing a silly serious mode" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Serious business lever</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Lever is thrown</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Serious mode selected</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Start unnecessary sirens</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-toggle-switch.png" alt="A miniature SPDT toggle switch with a metal lever and three pins" />
+        </div>
+
+        <div class="part-strip" aria-label="Toggle switch parts">          <div class="part"><strong>Lever</strong><span>Stays where it is moved</span></div>          <div class="part"><strong>COM</strong><span>Centre pin</span></div>          <div class="part"><strong>L1 and L2</strong><span>The two choices</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Toggle switch &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 27">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import Button
+
+mode = Button(23)
+
+mode_two = mode.is_pressed</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Switch
+
+mode = Switch(16)
+
+mode_two = mode.is_closed</code></pre>
+          </section>        </div>        <div class="note">Connect COM and one outside pin. The unused outside pin can be left unconnected.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-toggle-switch.png" alt="Raspberry Pi 5 connected to an SPDT toggle switch" />
+            </div>
+            <div class="pin-note"><strong>GPIO 23</strong> &rarr; COM; one outside pin &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-toggle-switch.png" alt="Raspberry Pi Pico connected to an SPDT toggle switch" />
+            </div>
+            <div class="pin-note"><strong>GP16</strong> &rarr; COM; one outside pin &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Toggle switch &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

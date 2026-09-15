@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoPixels Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>NeoPixels</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Output</span>            <span class="tag">Light</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A NeoPixel is a full-colour LED with a tiny controller built into it.</p>          <p>One data wire carries colour instructions, and each pixel passes the remaining instructions onwards.</p>          <p>The 3.3 V-compatible JST breakout shown here can connect directly to a Pi or Pico.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-progress-bar.png" alt="A row of coloured addressable LEDs filling as progress increases" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Progress bar</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure progress</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>How many pixels to fill</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Light the strip</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-shoelace-meter.png" alt="A colourful wearable string of lights judging dance energy" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Disco shoelace meter</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure dance energy</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Choose colours and pattern</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Animate the pixels</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-neopixels.png" alt="A small Adafruit NeoPixel JST SH breakout with one square RGB pixel" />
+        </div>
+
+        <div class="part-strip" aria-label="NeoPixels parts">          <div class="part"><strong>Pixel</strong><span>RGB LED and controller</span></div>          <div class="part"><strong>IN</strong><span>Data from the board</span></div>          <div class="part"><strong>OUT</strong><span>Data to another pixel</span></div>          <div class="part"><strong>VDD and GND</strong><span>3.3 V power</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">NeoPixels &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 40">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>import board
+import neopixel
+
+pixels = neopixel.NeoPixel(board.D18, 1)
+
+pixels[0] = (255, 0, 80)</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from machine import Pin
+from neopixel import NeoPixel
+
+pixels = NeoPixel(Pin(28), 1)
+pixels[0] = (255, 0, 80)
+pixels.write()</code></pre>
+          </section>        </div>        <div class="note">This wiring is for the pictured 3.3 V-compatible breakout. Generic 5 V strips usually need a separate supply and a logic-level shifter.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-neopixels.png" alt="A 3.3 V NeoPixel breakout connected directly to Raspberry Pi 5" />
+            </div>
+            <div class="pin-note"><strong>GPIO18</strong> &rarr; IN, <strong>3V3</strong> &rarr; VDD, <strong>GND</strong> &rarr; GND</div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-neopixels.png" alt="A 3.3 V NeoPixel breakout connected directly to Raspberry Pi Pico" />
+            </div>
+            <div class="pin-note"><strong>GP28</strong> &rarr; IN, <strong>3V3 OUT</strong> &rarr; VDD, <strong>GND</strong> &rarr; GND</div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">NeoPixels &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

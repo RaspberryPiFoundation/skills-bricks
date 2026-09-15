@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speaker Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Speaker</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Output</span>            <span class="tag">Sound</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A small passive speaker turns a changing electrical signal into sound.</p>          <p>Current through its coil moves a cone backwards and forwards, pushing the air.</p>          <p>The 220 ohm resistor shown here protects the GPIO; it also keeps this simple circuit fairly quiet.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-door-chime.png" alt="A small electronic door chime project" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Door chime</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Door button is pressed</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which chime to use</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play the notes</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-fanfare-machine.png" alt="A tiny cardboard machine that plays a fanfare for ordinary achievements" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Tiny fanfare machine</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Something mildly impressive happens</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>It deserves a fanfare</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play triumphant notes</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-speaker.png" alt="A small passive eight-ohm loudspeaker with two solder terminals" />
+        </div>
+
+        <div class="part-strip" aria-label="Speaker parts">          <div class="part"><strong>Cone</strong><span>Pushes the air</span></div>          <div class="part"><strong>Coil and magnet</strong><span>Create movement</span></div>          <div class="part"><strong>Terminals</strong><span>Connect through 220 ohms</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Speaker &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 32">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import TonalBuzzer
+
+speaker = TonalBuzzer(17)
+
+speaker.play("E4")</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Speaker
+
+speaker = Speaker(16)
+
+speaker.play("E4", duration=1)</code></pre>
+          </section>        </div>        <div class="note">For a louder speaker, use a transistor or amplifier rather than removing the protective resistor.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-speaker.png" alt="Raspberry Pi 5 connected through a 220 ohm resistor to a small speaker" />
+            </div>
+            <div class="pin-note"><strong>GPIO17</strong> &rarr; 220 ohms &rarr; speaker &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-speaker.png" alt="Raspberry Pi Pico connected through a 220 ohm resistor to a small speaker" />
+            </div>
+            <div class="pin-note"><strong>GP16</strong> &rarr; 220 ohms &rarr; speaker &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Speaker &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>
