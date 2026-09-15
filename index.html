@@ -18,6 +18,11 @@
     h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
     p { margin: 0; color: #4b5563; font-size: 1.1rem; }
     .logo { width: min(12rem, 30vw); height: auto; }
+    .sort-control { display: flex; align-items: center; gap: .45rem; margin: 0 0 2rem; }
+    .sort-label { margin-right: .35rem; color: #4b5563; font-weight: 700; }
+    .sort-control button { padding: .6rem .9rem; border: .12rem solid #b7c2ca; border-radius: 2rem; color: #34404b; background: white; font: inherit; font-weight: 700; cursor: pointer; }
+    .sort-control button[aria-pressed="true"] { border-color: #0089b2; color: white; background: #0089b2; }
+    .sort-control button:focus-visible { outline: .2rem solid #0089b2; outline-offset: .15rem; }
     .group + .group { margin-top: 2.5rem; }
     h2 { margin: 0 0 1rem; padding-bottom: .55rem; border-bottom: .25rem solid #0089b2; color: #007394; font-size: 1.6rem; }
     .group.do h2 { border-color: #c51a4a; color: #a4133d; }
@@ -42,23 +47,57 @@
       </div>
       <img class="logo" src="button/assets/rpf-logo-lockup.png" alt="Raspberry Pi Foundation">
     </header>
-    <section class="group" aria-labelledby="detect-heading">
-      <h2 id="detect-heading">Detect</h2>
-      <ul class="brick-grid">
-        <li><a href="button/button.html"><img class="thumbnail" src="button/images/component-button.png" alt="Tactile push button"><span class="card-copy"><span class="name">Button</span><span class="strand">Detect</span></span></a></li>
-        <li><a href="ldr/ldr.html"><img class="thumbnail" src="ldr/images/component-ldr.png" alt="Light-dependent resistor"><span class="card-copy"><span class="name">LDR</span><span class="strand">Detect</span></span></a></li>
-        <li><a href="distance/distance.html"><img class="thumbnail" src="distance/images/component-distance.png" alt="Ultrasonic distance sensor"><span class="card-copy"><span class="name">Distance sensor</span><span class="strand">Detect</span></span></a></li>
-        <li><a href="pir/pir.html"><img class="thumbnail" src="pir/images/component-pir.png" alt="PIR motion sensor"><span class="card-copy"><span class="name">PIR</span><span class="strand">Detect</span></span></a></li>
-        <li><a href="potentiometer/potentiometer.html"><img class="thumbnail" src="potentiometer/images/component-potentiometer.png" alt="Blue trimpot potentiometer"><span class="card-copy"><span class="name">Potentiometer</span><span class="strand">Detect</span></span></a></li>
-      </ul>
-    </section>
-    <section class="group do" aria-labelledby="do-heading">
-      <h2 id="do-heading">Do</h2>
-      <ul class="brick-grid">
-        <li><a class="do" href="led/led.html"><img class="thumbnail" src="led/images/component-led.png" alt="Red light-emitting diode"><span class="card-copy"><span class="name">LED</span><span class="strand">Do</span></span></a></li>
-        <li><a class="do" href="buzzer/buzzer.html"><img class="thumbnail" src="buzzer/images/component-buzzer.png" alt="Piezo buzzer"><span class="card-copy"><span class="name">Buzzer</span><span class="strand">Do</span></span></a></li>
-      </ul>
-    </section>
+    <div class="sort-control" aria-label="Sort Skill Bricks">
+      <span class="sort-label">Sort by</span>
+      <button type="button" data-sort="strand" aria-pressed="true">Detect / Do</button>
+      <button type="button" data-sort="alpha" aria-pressed="false">A–Z</button>
+    </div>
+    <div id="strand-view">
+      <section class="group" aria-labelledby="detect-heading">
+        <h2 id="detect-heading">Detect</h2>
+        <ul class="brick-grid">
+          <li><a href="button/button.html"><img class="thumbnail" src="button/images/component-button.png" alt="Tactile push button"><span class="card-copy"><span class="name">Button</span><span class="strand">Detect</span></span></a></li>
+          <li><a href="ldr/ldr.html"><img class="thumbnail" src="ldr/images/component-ldr.png" alt="Light-dependent resistor"><span class="card-copy"><span class="name">LDR</span><span class="strand">Detect</span></span></a></li>
+          <li><a href="distance/distance.html"><img class="thumbnail" src="distance/images/component-distance.png" alt="Ultrasonic distance sensor"><span class="card-copy"><span class="name">Distance sensor</span><span class="strand">Detect</span></span></a></li>
+          <li><a href="pir/pir.html"><img class="thumbnail" src="pir/images/component-pir.png" alt="PIR motion sensor"><span class="card-copy"><span class="name">PIR</span><span class="strand">Detect</span></span></a></li>
+          <li><a href="potentiometer/potentiometer.html"><img class="thumbnail" src="potentiometer/images/component-potentiometer.png" alt="Blue trimpot potentiometer"><span class="card-copy"><span class="name">Potentiometer</span><span class="strand">Detect</span></span></a></li>
+        </ul>
+      </section>
+      <section class="group do" aria-labelledby="do-heading">
+        <h2 id="do-heading">Do</h2>
+        <ul class="brick-grid">
+          <li><a class="do" href="led/led.html"><img class="thumbnail" src="led/images/component-led.png" alt="Red light-emitting diode"><span class="card-copy"><span class="name">LED</span><span class="strand">Do</span></span></a></li>
+          <li><a class="do" href="buzzer/buzzer.html"><img class="thumbnail" src="buzzer/images/component-buzzer.png" alt="Piezo buzzer"><span class="card-copy"><span class="name">Buzzer</span><span class="strand">Do</span></span></a></li>
+        </ul>
+      </section>
+    </div>
+    <div id="alpha-view" hidden>
+      <section class="group" aria-labelledby="alpha-heading">
+        <h2 id="alpha-heading">A–Z</h2>
+        <ul class="brick-grid">
+          <li><a href="button/button.html"><img class="thumbnail" src="button/images/component-button.png" alt="Tactile push button"><span class="card-copy"><span class="name">Button</span><span class="strand">Detect</span></span></a></li>
+          <li><a class="do" href="buzzer/buzzer.html"><img class="thumbnail" src="buzzer/images/component-buzzer.png" alt="Piezo buzzer"><span class="card-copy"><span class="name">Buzzer</span><span class="strand">Do</span></span></a></li>
+          <li><a href="distance/distance.html"><img class="thumbnail" src="distance/images/component-distance.png" alt="Ultrasonic distance sensor"><span class="card-copy"><span class="name">Distance sensor</span><span class="strand">Detect</span></span></a></li>
+          <li><a href="ldr/ldr.html"><img class="thumbnail" src="ldr/images/component-ldr.png" alt="Light-dependent resistor"><span class="card-copy"><span class="name">LDR</span><span class="strand">Detect</span></span></a></li>
+          <li><a class="do" href="led/led.html"><img class="thumbnail" src="led/images/component-led.png" alt="Red light-emitting diode"><span class="card-copy"><span class="name">LED</span><span class="strand">Do</span></span></a></li>
+          <li><a href="pir/pir.html"><img class="thumbnail" src="pir/images/component-pir.png" alt="PIR motion sensor"><span class="card-copy"><span class="name">PIR</span><span class="strand">Detect</span></span></a></li>
+          <li><a href="potentiometer/potentiometer.html"><img class="thumbnail" src="potentiometer/images/component-potentiometer.png" alt="Blue trimpot potentiometer"><span class="card-copy"><span class="name">Potentiometer</span><span class="strand">Detect</span></span></a></li>
+        </ul>
+      </section>
+    </div>
   </main>
+  <script>
+    const sortButtons = document.querySelectorAll('[data-sort]');
+    const strandView = document.querySelector('#strand-view');
+    const alphaView = document.querySelector('#alpha-view');
+    sortButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const byStrand = button.dataset.sort === 'strand';
+        strandView.hidden = !byStrand;
+        alphaView.hidden = byStrand;
+        sortButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      });
+    });
+  </script>
 </body>
 </html>
