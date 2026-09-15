@@ -100,6 +100,37 @@ body {
   --accent-wash: color-mix(in srgb, var(--accent) 3.5%, #ffffff);
 }
 
+.download-toolbar {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  width: var(--page-w);
+  max-width: calc(100% - 2rem);
+  margin: 1rem auto -0.35rem;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.download-toolbar a {
+  padding: 0.65rem 1rem;
+  border-radius: 2rem;
+  color: #ffffff;
+  background: var(--accent-ink);
+  box-shadow: 0 0.15rem 0.6rem rgb(23 32 51 / 22%);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.download-toolbar a:hover,
+.download-toolbar a:focus-visible {
+  background: var(--accent);
+  outline: 0.18rem solid var(--accent);
+  outline-offset: 0.18rem;
+}
+
 h1,
 h2,
 h3,
@@ -667,6 +698,10 @@ code {
   html,
   body {
     background: #ffffff;
+  }
+
+  .download-toolbar {
+    display: none;
   }
 
   .page {

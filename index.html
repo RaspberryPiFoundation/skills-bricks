@@ -18,11 +18,14 @@
     h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
     p { margin: 0; color: #4b5563; font-size: 1.1rem; }
     .logo { width: min(12rem, 30vw); height: auto; }
-    .sort-control { display: flex; align-items: center; gap: .45rem; margin: 0 0 2rem; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 0 0 2rem; }
+    .sort-control { display: flex; align-items: center; gap: .45rem; }
     .sort-label { margin-right: .35rem; color: #4b5563; font-weight: 700; }
     .sort-control button { padding: .6rem .9rem; border: .12rem solid #b7c2ca; border-radius: 2rem; color: #34404b; background: white; font: inherit; font-weight: 700; cursor: pointer; }
     .sort-control button[aria-pressed="true"] { border-color: #0089b2; color: white; background: #0089b2; }
     .sort-control button:focus-visible { outline: .2rem solid #0089b2; outline-offset: .15rem; }
+    .download-all { display: inline-flex; grid-template-rows: none; align-items: center; padding: .68rem 1rem; border: 0; border-radius: 2rem; color: white; background: #c51a4a; box-shadow: 0 .15rem .55rem rgb(0 0 0 / 14%); font-weight: 700; }
+    .download-all:hover, .download-all:focus-visible { transform: translateY(-2px); background: #a4133d; box-shadow: 0 .3rem .8rem rgb(0 0 0 / 18%); outline: .2rem solid #c51a4a; outline-offset: .15rem; }
     .group + .group { margin-top: 2.5rem; }
     h2 { margin: 0 0 1rem; padding-bottom: .55rem; border-bottom: .25rem solid #0089b2; color: #007394; font-size: 1.6rem; }
     .group.do h2 { border-color: #c51a4a; color: #a4133d; }
@@ -47,10 +50,13 @@
       </div>
       <img class="logo" src="button/assets/rpf-logo-lockup.png" alt="Raspberry Pi Foundation">
     </header>
-    <div class="sort-control" aria-label="Sort Skill Bricks">
-      <span class="sort-label">Sort by</span>
-      <button type="button" data-sort="strand" aria-pressed="true">Detect / Do</button>
-      <button type="button" data-sort="alpha" aria-pressed="false">A–Z</button>
+    <div class="toolbar">
+      <div class="sort-control" aria-label="Sort Skill Bricks">
+        <span class="sort-label">Sort by</span>
+        <button type="button" data-sort="strand" aria-pressed="true">Detect / Do</button>
+        <button type="button" data-sort="alpha" aria-pressed="false">A–Z</button>
+      </div>
+      <a class="download-all" href="skill-bricks-complete.pdf" download>Download all as PDF</a>
     </div>
     <div id="strand-view">
       <section class="group" aria-labelledby="detect-heading">
