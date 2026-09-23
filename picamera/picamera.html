@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pi Camera Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">
+    <a href="picamera.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Pi Camera</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>            <span class="tag">Images</span>            <span class="tag">Video</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A camera turns light into digital images. Connect a Raspberry Pi Camera Module to a Raspberry Pi computer with a flat ribbon cable.</p>          <p>Use Python to take a photograph or record a video. Your program can also examine images and decide what to do next.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-video-doorbell.png" alt="A mass-produced video doorbell beside a front door" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Video doorbell</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Camera sees movement.</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is a person there?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Save a video clip.</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-monster-photo-booth.png" alt="A wonky cardboard monster photo booth with a camera, Raspberry Pi and large push button" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Monster photo booth</div>
+              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Button starts countdown.</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Has time run out?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Take a silly photo.</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-picamera.png" alt="Raspberry Pi Camera Module 3 with its lens and flat ribbon cable" />
+        </div>
+
+        <div class="part-strip" aria-label="Pi Camera parts">          <div class="part"><strong>Lens</strong><span>Focuses light</span></div>          <div class="part"><strong>Sensor</strong><span>Records the image</span></div>          <div class="part"><strong>Ribbon</strong><span>Connects to the Pi</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Pi Camera &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 31">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Take photo</h2>
+            <pre><code>from picamera2 import Picamera2
+
+camera = Picamera2()
+camera.start_and_capture_file(
+    "photo.jpg", delay=2,
+    show_preview=False)
+camera.close()</code></pre>
+          </section>          <section class="code-block">
+            <h2>Take video</h2>
+            <pre><code>from picamera2 import Picamera2
+
+camera = Picamera2()
+camera.start_and_record_video(
+    "video.mp4", duration=5)
+camera.close()</code></pre>
+          </section>        </div>        <div class="note">Run each example separately on <strong>Raspberry Pi OS</strong> with <strong>Picamera2</strong> installed. Files save in the current folder. The video is five seconds long, without sound.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5 + Camera Module 3</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-ribbon-fitting.png" alt="Ribbon fitting guide showing the Pi&#x27;s CAM/DISP ports, narrow 22-pin Pi end, wide 15-pin camera end, contact orientation and the open, insert and lock sequence" />
+            </div>
+            <div class="pin-note">Use a <strong>Standard–Mini camera cable</strong> (22-pin to 15-pin). The wide cable supplied with the camera fits a Pi 4, not a Pi 5.</div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Pi Camera &middot; Detect</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>
