@@ -22,7 +22,7 @@
           <div class="tags" aria-label="Skill Brick tags">
             <span class="tag tag-strand">Detect</span>            <span class="tag">Distance</span>          </div>
 
-          <h2>What does it do?</h2>          <p>A distance sensor measures how far away something is without touching it.</p>          <p>It works like a bat. One side sends out a click too high for you to hear, the other side listens for the echo, and the time it takes gives the distance.</p>          <p>Your projects can use it to react as something comes closer, or to measure a gap that keeps changing.</p>        </section>
+          <h2>What does it do?</h2>          <p>An HC-SR04P distance sensor measures how far away something is without touching it.</p>          <p>It works like a bat. One side sends out a click too high for you to hear, the other side listens for the echo, and the time it takes gives the distance.</p>          <p>Your projects can use it to react as something comes closer, or to measure a gap that keeps changing.</p>        </section>
 
         <section class="uses-section">
           <h2>Uses</h2>
@@ -31,8 +31,7 @@
               <img src="images/use-parking-sensor.png" alt="A car reversing towards a garage wall with its parking sensors active" />
             </div>
             <div class="use-content">
-              <div class="use-title">Parking sensor</div>
-              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Gap to the wall</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is it closer than 30 cm?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Beep faster</div>              </div>
+              <div class="use-title">Parking sensor</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Gap to the wall</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is it closer than 30 cm?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Beep faster</div>              </div>
             </div>
           </article>
           <article class="use-card">
@@ -40,15 +39,14 @@
               <img src="images/use-air-harp.png" alt="A homemade air harp with an ultrasonic sensor on a cardboard stand" />
             </div>
             <div class="use-content">
-              <div class="use-title">Air harp</div>
-              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>How far your hand is</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which note is that?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play the note</div>              </div>
+              <div class="use-title">Air harp</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>How far your hand is</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which note is that?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play the note</div>              </div>
             </div>
           </article>        </section>
       </main>
 
       <aside class="panel component-panel">
         <div class="image-box component-image">
-          <img src="images/component-distance.png" alt="An ultrasonic distance sensor module with two round transducers and four pins" />
+          <img src="images/component-distance.png" alt="An HC-SR04P ultrasonic distance sensor module with two round transducers and four pins" />
         </div>
 
         <div class="part-strip" aria-label="Distance sensor parts">          <div class="part"><strong>VCC</strong><span>Power, 3V3</span></div>          <div class="part"><strong>Trig</strong><span>Sends a click</span></div>          <div class="part"><strong>Echo</strong><span>Times the return</span></div>          <div class="part"><strong>GND</strong><span>Ground</span></div>        </div>
@@ -89,7 +87,7 @@ sensor = DistanceSensor(
 )
 
 distance = sensor.distance</code></pre>
-          </section>        </div>        <div class="note"><code class="inline-code">distance</code> is in metres and stops at 1. Pass <code class="inline-code">max_distance=2</code> to see further, or read <code class="inline-code">sensor.value</code> for 0 to 1. Power it from <strong>3V3</strong>, not 5V.</div>      </main>
+          </section>        </div>        <div class="note"><code class="inline-code">distance</code> is in metres and stops at 1. Pass <code class="inline-code">max_distance=2</code> to see further, or read <code class="inline-code">sensor.value</code> for 0 to 1. Use an <strong>HC-SR04P</strong>, powered from <strong>3V3</strong>.</div>      </main>
 
       <aside class="panel wiring-panel">
         <h1>Wiring</h1>
@@ -97,15 +95,15 @@ distance = sensor.distance</code></pre>
         <div class="wiring-grid rows">          <section class="wiring-card">
             <div class="wiring-label">Raspberry Pi 5</div>
             <div class="image-box wiring-image">
-              <img src="images/pi-srf05-direct.png" alt="Ultrasonic distance sensor wired straight onto a Raspberry Pi 5 header" />
+              <img src="images/pi-srf05-direct.png" alt="Four-pin HC-SR04P ultrasonic distance sensor wired straight onto a Raspberry Pi 5 header" />
             </div>
-            <div class="pin-note">Trig <strong>GPIO 17</strong> &nbsp;&middot;&nbsp; Echo <strong>GPIO 18</strong></div>
+            <div class="pin-note">HC-SR04P &nbsp;&middot;&nbsp; Trig <strong>GPIO 17</strong> &nbsp;&middot;&nbsp; Echo <strong>GPIO 18</strong></div>
           </section>          <section class="wiring-card">
             <div class="wiring-label">Pico</div>
             <div class="image-box wiring-image">
-              <img src="images/pico-srf05.png" alt="Ultrasonic distance sensor wired to a Raspberry Pi Pico on a breadboard" />
+              <img src="images/pico-srf05.png" alt="Four-pin HC-SR04P ultrasonic distance sensor wired to a Raspberry Pi Pico on a breadboard" />
             </div>
-            <div class="pin-note">Trig <strong>GP13</strong> &nbsp;&middot;&nbsp; Echo <strong>GP15</strong></div>
+            <div class="pin-note">HC-SR04P &nbsp;&middot;&nbsp; Trig <strong>GP13</strong> &nbsp;&middot;&nbsp; Echo <strong>GP15</strong></div>
           </section>        </div>
       </aside>
     </div>
