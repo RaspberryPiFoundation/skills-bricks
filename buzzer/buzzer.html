@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buzzer Skill Brick</title>
+  <title>Active buzzer Skill Brick</title>
   <link rel="stylesheet" href="skill-brick.css" />
 </head>
 <body class="strand-do">
@@ -17,12 +17,12 @@
     <div class="page-body">
       <main class="panel">
         <section class="description">
-          <h1>Buzzer</h1>
+          <h1>Active buzzer</h1>
 
           <div class="tags" aria-label="Skill Brick tags">
             <span class="tag tag-strand">Do</span>            <span class="tag">Sound</span>          </div>
 
-          <h2>What does it do?</h2>          <p>A buzzer makes a sound the moment your code switches it on.</p>          <p>An active buzzer has its tone built in, so it beeps at one fixed pitch. You switch it on and off rather than choosing notes.</p>          <p>Your projects can use it for an alarm, a warning, a countdown, or a fanfare when somebody wins.</p>        </section>
+          <h2>What does it do?</h2>          <p>An active buzzer makes one built-in tone. Switch it on and off for warning beeps or rhythms; its pitch stays the same.</p>          <p><strong>Recognise it:</strong> check the packet for <strong>active</strong> or <strong>built-in oscillator</strong>. Shape, stickers and + marks do not prove the type.</p>          <p>Use a labelled <strong>3.3 V GPIO-compatible</strong> buzzer.</p>        </section>
 
         <section class="uses-section">
           <h2>Uses</h2>
@@ -31,8 +31,7 @@
               <img src="images/use-smoke-alarm.png" alt="A white smoke alarm mounted on a ceiling" />
             </div>
             <div class="use-content">
-              <div class="use-title">Smoke alarm</div>
-              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure smoke level</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is smoke above the limit?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Sound the buzzer</div>              </div>
+              <div class="use-title">Smoke alarm</div>              <div class="use-why">One warning tone is enough; no changing notes needed.</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure smoke level</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is smoke above the limit?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Repeat one warning tone</div>              </div>
             </div>
           </article>
           <article class="use-card">
@@ -40,8 +39,7 @@
               <img src="images/use-buzz-wire.png" alt="A homemade buzz wire game with a bent wire and a loop on a stick" />
             </div>
             <div class="use-content">
-              <div class="use-title">Buzz wire game</div>
-              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Loop touches wire</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is this the third strike?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Sound the failure buzzer</div>              </div>
+              <div class="use-title">Buzz wire game</div>              <div class="use-why">Choose active: one fixed buzz clearly signals failure.</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Loop touches wire</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is this the third strike?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Buzz at one pitch</div>              </div>
             </div>
           </article>        </section>
       </main>
@@ -51,13 +49,13 @@
           <img src="images/component-buzzer.png" alt="A 12 mm black active buzzer with a vent hole on top and two pins" />
         </div>
 
-        <div class="part-strip" aria-label="Buzzer parts">          <div class="part"><strong>+ leg</strong><span>Longer, to GPIO</span></div>          <div class="part"><strong>− leg</strong><span>Shorter, to GND</span></div>          <div class="part"><strong>Vent</strong><span>Sound comes out</span></div>        </div>
+        <div class="part-strip" aria-label="Active buzzer parts">          <div class="part"><strong>+ leg</strong><span>Marked +, to GPIO</span></div>          <div class="part"><strong>− leg</strong><span>Other leg, to GND</span></div>          <div class="part"><strong>Vent</strong><span>Sound comes out</span></div>        </div>
       </aside>
     </div>
 
     <footer class="page-footer">
   <div class="footer-meta">
-    <span class="footer-brick">Buzzer &middot; Do</span>
+    <span class="footer-brick">Active buzzer &middot; Do</span>
     <span>Build Lab Skill Brick</span>
   </div>
   <img class="footer-logo" src="assets/rpf-logo-lockup.png"
@@ -85,7 +83,7 @@ buzzer.on()</code></pre>
 buzzer = Buzzer(16)
 
 buzzer.on()</code></pre>
-          </section>        </div>        <div class="note">Also <code class="inline-code">buzzer.off()</code>, <code class="inline-code">buzzer.toggle()</code> and <code class="inline-code">buzzer.beep()</code>. Give <code class="inline-code">beep()</code> an <code class="inline-code">on_time</code> and an <code class="inline-code">off_time</code> to set the rhythm.</div>      </main>
+          </section>        </div>        <div class="note">Also <code class="inline-code">buzzer.off()</code>, <code class="inline-code">buzzer.toggle()</code> and <code class="inline-code">buzzer.beep()</code>. Give <code class="inline-code">beep()</code> an <code class="inline-code">on_time</code> and an <code class="inline-code">off_time</code> to set the rhythm. Faster beeps do not mean a higher pitch.</div>      </main>
 
       <aside class="panel wiring-panel">
         <h1>Wiring</h1>
@@ -108,7 +106,7 @@ buzzer.on()</code></pre>
 
     <footer class="page-footer">
   <div class="footer-meta">
-    <span class="footer-brick">Buzzer &middot; Do</span>
+    <span class="footer-brick">Active buzzer &middot; Do</span>
     <span>Build Lab Skill Brick</span>
   </div>
   <img class="footer-logo" src="assets/rpf-logo-lockup.png"

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passive buzzer Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">
+    <a href="passive-buzzer.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Passive buzzer</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Sound</span>            <span class="tag">PWM</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A passive buzzer needs fast pulses (PWM) to make sound. Changing their frequency changes its pitch: low or high notes.</p>          <p><strong>Recognise it:</strong> check for <strong>passive</strong>, <strong>external drive</strong> or <strong>no oscillator</strong> on the packet. Both types can look identical; + only marks polarity.</p>          <p>Use a small <strong>3.3 V GPIO-compatible piezo</strong> sounder.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-washing-machine.png" alt="A domestic washing machine with clean towels inside, representing its end-of-cycle chime" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Washing-machine chime</div>              <div class="use-why">PWM plays tunes; active buzzers have only one pitch.</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read cycle status</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Has the wash finished?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play a short tune</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-robot-voice.png" alt="A cardboard robot with a buzzer mouth and happy and grumpy buttons" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Robot voice box</div>              <div class="use-why">Change pitch for happy chirps or grumpy growls.</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read mood button</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is happy pressed?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Chirp high or low</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-passive-buzzer.png" alt="An illustrative two-pin black passive piezo buzzer; its type cannot be identified by appearance alone" />
+        </div>
+
+        <div class="part-strip" aria-label="Passive buzzer parts">          <div class="part"><strong>+ leg</strong><span>Marked +, to GPIO</span></div>          <div class="part"><strong>− leg</strong><span>Other leg, to GND</span></div>          <div class="part"><strong>Vent</strong><span>Sound comes out</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Passive buzzer &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 35">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import TonalBuzzer
+
+buzzer = TonalBuzzer(12)
+
+buzzer.play("A5")</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import PWMBuzzer
+
+# GP16, 2000 Hz, 50% duty
+buzzer = PWMBuzzer(16, 2000, 32768)
+
+buzzer.on()</code></pre>
+          </section>        </div>        <div class="note">Pi: try <code class="inline-code">buzzer.play("A4")</code>; silence with <code class="inline-code">buzzer.stop()</code>. Pico: try <code class="inline-code">buzzer.freq = 1000</code>; silence with <code class="inline-code">buzzer.off()</code>. Higher frequency means higher pitch. Beep speed is separate; both types can make rhythms.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-buzzer.png" alt="Raspberry Pi 5 GPIO12 and ground connected to a small passive piezo buzzer" />
+            </div>
+            <div class="pin-note"><strong>GPIO 12</strong> &rarr; <strong>+</strong> buzzer <strong>−</strong> &rarr; <strong>GND</strong></div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-buzzer.png" alt="Raspberry Pi Pico GP16 and ground connected to a small passive piezo buzzer" />
+            </div>
+            <div class="pin-note"><strong>GP16</strong> &rarr; <strong>+</strong> buzzer <strong>−</strong> &rarr; <strong>GND</strong></div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Passive buzzer &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>
