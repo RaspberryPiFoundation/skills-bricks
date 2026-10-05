@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servo motor Skill Brick</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">
+    <a href="servo.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Servo motor</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>            <span class="tag">Output</span>            <span class="tag">Movement</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A positional servo moves its arm, called a horn, to a chosen position and holds it there.</p>          <p>Short pulses on its signal wire set the position. The motor and position control are built into the case.</p>          <p>Use it for steering, pointing or opening a flap. A continuous-rotation servo controls speed instead; it cannot use this example to choose an angle.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-rc-steering.png" alt="A steering servo and linkage inside a manufactured radio-controlled car" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Radio-controlled steering</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read steering command</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which way should it turn?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Set the steering position</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-monster-mouth.png" alt="A scruffy cardboard monster whose jaw is moved by a small servo and paperclip linkage" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Cardboard chomping monster</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read feeding button</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is the monster hungry?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Open its cardboard jaw</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-servo.png" alt="A blue positional microservo with a white horn and a three-wire plug" />
+        </div>
+
+        <div class="part-strip" aria-label="Servo motor parts">          <div class="part"><strong>Horn</strong><span>Attach a light moving part</span></div>          <div class="part"><strong>Signal</strong><span>Usually orange</span></div>          <div class="part"><strong>Power</strong><span>Usually red; separate supply</span></div>          <div class="part"><strong>Ground</strong><span>Brown or black; join grounds</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Servo motor &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">
+    <div class="page-body">
+      <main class="panel code-panel" style="--code-cols: 26">
+        <h1>Code</h1>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import Servo
+from time import sleep
+
+servo = Servo(16)
+servo.mid()
+sleep(2)</code></pre>
+          </section>          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Servo
+from time import sleep
+
+servo = Servo(15)
+servo.mid()
+sleep(2)</code></pre>
+          </section>        </div>        <div class="note">Test unloaded: the horn centres. Try min() or max() instead of mid(). Travel varies; stop if it binds or buzzes. Check lead order.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>
+
+        <div class="wiring-grid columns">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-servo.png" alt="A servo powered by a separate four-AA NiMH pack, with signal on GPIO16 and grounds joined through the Pi header" />
+            </div>
+            <div class="pin-note"><strong>GPIO16</strong> (pin 36) &rarr; signal; <strong>GND</strong> pins 34/39 &rarr; servo/pack −. <strong>4×AA NiMH (4.8 V)</strong> pack + &rarr; servo red.</div>
+          </section>          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-servo.png" alt="A servo with signal on GP15 and a separate four-AA NiMH battery pack sharing ground with the seated Pico" />
+            </div>
+            <div class="pin-note"><strong>GP15</strong> &rarr; signal; <strong>GND</strong> (pin 18) &rarr; servo/pack −. Use <strong>4×AA NiMH (4.8 V)</strong>; USB powers the board. Keep pack + off board power pins.</div>
+          </section>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Servo motor &middot; Do</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>
