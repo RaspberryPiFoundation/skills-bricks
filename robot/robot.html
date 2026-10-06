@@ -22,7 +22,7 @@
           <div class="tags" aria-label="Skill Brick tags">
             <span class="tag tag-strand">Do</span>            <span class="tag">Output</span>            <span class="tag">Movement</span>          </div>
 
-          <h2>What does it do?</h2>          <p>A two-wheel rover uses a separate geared motor for each wheel. A caster or smooth skid supports the other end.</p>          <p>Drive both wheels forwards to move; change their speeds or directions to turn. A motor driver handles their power.</p>          <p>The Robot class joins the two motors into one object. This example uses an Adafruit TB6612 breakout and a separate motor battery pack.</p>        </section>
+          <h2>What does it do?</h2>          <p>A two-wheel rover uses a separate geared motor for each wheel. A caster or smooth skid supports the other end.</p>          <p>Drive both wheels forwards to move; change their speeds or directions to turn. A motor driver handles their power.</p>          <p>The Robot class joins the two motors into one object. This example uses a breadboard-mounted L293D chip and a separate motor battery pack.</p>        </section>
 
         <section class="uses-section">
           <h2>Uses</h2>
@@ -49,7 +49,7 @@
           <img src="images/component-robot.png" alt="A small two-wheel rover with geared motors, a caster, Pico, motor driver and separate batteries" />
         </div>
 
-        <div class="part-strip" aria-label="Robot / rover parts">          <div class="part"><strong>Drive wheels</strong><span>One geared motor per side</span></div>          <div class="part"><strong>Motor driver</strong><span>Controls both motors</span></div>          <div class="part"><strong>Caster or skid</strong><span>Supports the chassis</span></div>          <div class="part"><strong>Power</strong><span>Separate motor and USB supplies</span></div>        </div>
+        <div class="part-strip" aria-label="Robot / rover parts">          <div class="part"><strong>Drive wheels</strong><span>One geared motor per side</span></div>          <div class="part"><strong>Motor driver</strong><span>L293D, a 16-pin breadboard chip</span></div>          <div class="part"><strong>Caster or skid</strong><span>Supports the chassis</span></div>          <div class="part"><strong>Power</strong><span>Separate motor and USB supplies</span></div>        </div>
       </aside>
     </div>
 
@@ -75,9 +75,9 @@
 from time import sleep
 
 robot = Robot(left=Motor(13, 19),
-              right=Motor(6, 5))
+              right=Motor(17, 27))
 try:
-    robot.forward(0.5)
+    robot.forward()
     sleep(1)
 finally:
     robot.stop()</code></pre>
@@ -85,9 +85,9 @@ finally:
             <h2>Raspberry Pi Pico</h2>
             <pre><code>from picozero import Robot
 
-robot = Robot(left=(20, 19),
-              right=(21, 22))
-robot.forward(0.5, t=1, wait=True)</code></pre>
+robot = Robot(left=(14, 15),
+              right=(22, 21))
+robot.forward(t=1, wait=True)</code></pre>
           </section>        </div>        <div class="note">Test with wheels lifted. Reverse a motor by swapping its leads with power off. Try left(), right(), backward() and stop().</div>      </main>
 
       <aside class="panel wiring-panel">
@@ -96,15 +96,15 @@ robot.forward(0.5, t=1, wait=True)</code></pre>
         <div class="wiring-grid columns">          <section class="wiring-card">
             <div class="wiring-label">Raspberry Pi 5</div>
             <div class="image-box wiring-image">
-              <img src="images/pi5-robot.png" alt="Raspberry Pi controlling two geared motors through an Adafruit TB6612 breakout, with independent motor power and shared ground" />
+              <img src="images/pi5-robot.png" alt="Raspberry Pi controlling two geared motors through a breadboard-mounted L293D chip, with independent motor power and shared ground" />
             </div>
-            <div class="pin-note"><strong>GPIO13/19</strong> &rarr; AIN1/2 (left); <strong>GPIO6/5</strong> &rarr; BIN1/2 (right). <strong>3V3</strong> &rarr; VCC, PWMA/B; GND shared.</div>
+            <div class="pin-note"><strong>GPIO13/19</strong> &rarr; L293D pins 2/7; <strong>GPIO17/27</strong> &rarr; 15/10. <strong>5 V</strong> &rarr; 1, 9, 16. GND &rarr; 4, 5, 12, 13.</div>
           </section>          <section class="wiring-card">
             <div class="wiring-label">Pico</div>
             <div class="image-box wiring-image">
-              <img src="images/pico-robot.png" alt="Breadboard-seated Pico controlling left and right motors through an Adafruit TB6612 breakout" />
+              <img src="images/pico-robot.png" alt="Breadboard-seated Pico controlling left and right motors through a breadboard-mounted L293D chip" />
             </div>
-            <div class="pin-note"><strong>GP20/19</strong> &rarr; AIN1/2; <strong>GP21/22</strong> &rarr; BIN1/2. <strong>3V3</strong> &rarr; VCC, PWMA/B. <strong>4×AA alkaline (6 V)</strong> &rarr; VM/GND; USB powers board. Use 6 V motors with stall current <strong>≤1 A each</strong>.</div>
+            <div class="pin-note"><strong>GP14/15</strong> &rarr; pins 2/7; <strong>GP22/21</strong> &rarr; 15/10. <strong>VBUS</strong> &rarr; 1, 9, 16. <strong>4×AA alkaline (6 V)</strong> &rarr; 8/GND; GND shared. Two 100 nF capacitors. 6 V motors: stall current <strong>≤400 mA each</strong>.</div>
           </section>        </div>
       </aside>
     </div>
