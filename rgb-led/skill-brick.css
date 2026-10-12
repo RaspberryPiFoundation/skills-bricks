@@ -1,14 +1,16 @@
 /* ============================================================================
    Skill Brick — Raspberry Pi Foundation, Build Lab
    ----------------------------------------------------------------------------
-   One brick = one double-sided A5 landscape card (210 x 148 mm), each side
-   split into two panels:
+   One card per brick per platform: a double-sided A5 landscape card
+   (210 x 148 mm), each side split into two panels:
 
      Side 1   [ About + Uses            | Large component picture ]
-     Side 2   [ Code: Pi / Pico         | Wiring: Pi / Pico       ]
+     Side 2   [ Code (or Blocks)        | Wiring                  ]
 
-   Accent colour comes from the brick's strand. Set it on <body>:
+   Accent colour comes from the brick's strand, and the platform sets the
+   Side 2 split. Both are classes on <body>:
      class="strand-detect" | "strand-decide" | "strand-predict" | "strand-do"
+     class="variant-pi" | "variant-pico" | "variant-blocks"
 
    Everything derives from --accent via color-mix(), so a new strand needs one
    colour, not a palette.
@@ -108,7 +110,9 @@ body {
   max-width: calc(100% - 2rem);
   margin: 1rem auto -0.35rem;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 0.6rem;
   pointer-events: none;
 }
 
@@ -129,6 +133,35 @@ body {
   background: var(--accent);
   outline: 0.18rem solid var(--accent);
   outline-offset: 0.18rem;
+}
+
+/* Links to the same brick's other cards. Screen only, like the toolbar. */
+.toolbar-siblings {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.95rem;
+  border-radius: 2rem;
+  background: #ffffff;
+  box-shadow: 0 0.15rem 0.6rem rgb(23 32 51 / 22%);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  pointer-events: auto;
+}
+
+.download-toolbar .toolbar-siblings a {
+  padding: 0.4rem 0.8rem;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  box-shadow: none;
+  font-size: 0.9rem;
+}
+
+.download-toolbar .toolbar-siblings a:hover,
+.download-toolbar .toolbar-siblings a:focus-visible {
+  color: #ffffff;
+  background: var(--accent);
 }
 
 h1,
@@ -172,11 +205,19 @@ pre {
   grid-template-columns: 60% 40%;
 }
 
-/* Code needs less room than wiring on a card this size, so the wiring panel
-   gets the surplus — the diagrams are the element that runs out of space. */
+/* Each card carries one board, so the split is set per platform.
+   Pi diagrams stand upright (a Pi below its breadboard) and run out of height
+   first, so width beyond about 90 mm is wasted on them: the code takes half,
+   which lets a 31-character line print near 12pt. Pico diagrams lie flat and
+   run out of width first, so the Pico wiring keeps more of the page. A blocks
+   card is as wide as a Pi card: a MicroLab program is landscape too. */
 .side-2 .page-body {
-  grid-template-columns: 42% 58%;
+  grid-template-columns: var(--code-share, 42%) 1fr;
 }
+
+.variant-pi { --code-share: 50%; }
+.variant-pico { --code-share: 46%; }
+.variant-blocks { --code-share: 50%; }
 
 .panel {
   min-width: 0;
@@ -305,6 +346,15 @@ p:last-child {
   color: #ffffff;
 }
 
+/* Which board this card is for. Side 1 is otherwise the same on every card
+   of a brick, so a printed front must say which back it belongs to. Neutral
+   ink, so it never reads as a second strand colour. */
+.tag-platform {
+  background: #ffffff;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
 /* --- Image boxes ------------------------------------------------------- */
 
 .image-box {
@@ -383,7 +433,10 @@ p:last-child {
   grid-template-columns: 26mm 1fr;
   gap: 2.8mm;
   align-items: center;
-  min-height: 29mm;
+  /* 27.5 mm (was 29): the 22 mm photo plus padding still fits, and cards with
+     three two-line "about" paragraphs no longer push the second use past the
+     footer (am312-pir, distance, robot, servo overflowed by 2.9 mm). */
+  min-height: 27.5mm;
 }
 
 .use-image {
@@ -413,6 +466,12 @@ p:last-child {
   font-size: 9.8pt;
   font-weight: 800;
   line-height: 1.1;
+}
+
+.use-why {
+  margin: -0.6mm 0 1.5mm;
+  font-size: 7.3pt;
+  line-height: 1.2;
 }
 
 /* --- Detect / Decide / Do flow line ------------------------------------ */
@@ -519,17 +578,25 @@ p:last-child {
 
 .code-panel {
   padding-right: 6.5mm;
+  /* Largest code size; see the pre rules below. */
+  --code-max: 12pt;
 }
 
-/* Snippets are short and fixed-length, so spread them through the panel rather
-   than stacking them at the top and leaving a void above the note. */
+/* The code starts directly under the heading, so its board heading sits level
+   with the wiring label opposite; the note keeps to the foot of the panel,
+   level with the pin note. Centring one snippet instead left a void above it
+   that read as a missing block.
+   It is also a size container: the code font below is fitted to the room the
+   stack is given (cqw/cqh), so the heading, the QR and the note take what they
+   need and the code grows into the rest. */
 .code-stack {
-  flex: 1;
+  flex: 1 1 0;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   gap: 3.4mm;
+  container-type: size;
 }
 
 .code-block {
@@ -559,9 +626,9 @@ pre {
   font-family: Menlo, "Roboto Mono", Consolas, "Courier New", monospace;
   /* Shrink to fit the longest line rather than overflow, because <pre> does not
      wrap and code must not be re-flowed to suit the layout. --code-cols is the
-     longest line in characters, set by build.py; 65mm is the text width inside
-     the code panel and 0.6em is a monospace advance. Short snippets stay at the
-     9.2pt ideal; only genuinely long lines step down. */
+     longest line in characters, set by build.py; 61mm is the text width inside
+     a 42% code panel and 0.6em is a monospace advance. This is the fallback
+     for a browser without container units; the rule below replaces it. */
   --code-text-width: 61mm;
   font-size: min(
     9.2pt,
@@ -571,6 +638,25 @@ pre {
   white-space: pre;
   overflow: visible;
   tab-size: 4;
+}
+
+/* As large as fits, up to --code-max: one card carries one board, so the code
+   has the room two boards used to share, and children read it.
+   - Width: the stack's width (100cqw) less 6 mm of <pre> padding and 4 mm of
+     slack for Menlo's slightly wider advance, over the longest line.
+   - Height: the stack's height (100cqh) less 14 mm per block for its heading,
+     padding and gap, over the total lines at a 1.4 line height.
+   --code-cols, --code-rows and --code-blocks come from build.py. Inside
+   @supports because a var() that fails at computed time would not fall back
+   to the rule above. */
+@supports (width: 1cqw) {
+  pre {
+    font-size: min(
+      var(--code-max),
+      calc((100cqw - 10mm) / (var(--code-cols, 30) * 0.6)),
+      calc((100cqh - var(--code-blocks, 1) * 14mm) / (var(--code-rows, 5) * 1.4))
+    );
+  }
 }
 
 code {
@@ -588,6 +674,15 @@ code {
   font-size: 0.92em;
 }
 
+/* The QR sits beside the panel heading, which is otherwise empty to the
+   right. Stacking it anywhere else steals height the code blocks need. */
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3mm;
+}
+
 .note {
   margin-top: auto;
   border-left: 1mm solid var(--accent);
@@ -599,16 +694,220 @@ code {
   line-height: 1.26;
 }
 
+/* A QR to code too long for the card. The URL is printed as well, so the
+   card still works for a reader on a screen or without a phone. */
+.qr-link {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6mm;
+  padding: 1.2mm 1.4mm;
+  border: 0.3mm solid var(--accent-line);
+  border-radius: 2.6mm;
+  background: var(--accent-wash);
+  text-decoration: none;
+  color: inherit;
+}
+
+.qr-code {
+  width: 13mm;
+  height: 13mm;
+}
+
+.qr-url {
+  font-family: Menlo, "Roboto Mono", Consolas, "Courier New", monospace;
+  color: var(--muted);
+  font-size: 7pt;
+  line-height: 1.1;
+}
+
+/* --- Side 2: MicroLab blocks ------------------------------------------ */
+
+/* The program stands where a code block would: same dotted heading, and a
+   dark panel like <pre> (and like MicroLab's own workspace), so a blocks card
+   reads as the Pico card's sibling. The panel spans the width; the capture is
+   centred in it at the largest size that fits. */
+.blocks-url {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: Menlo, "Roboto Mono", Consolas, "Courier New", monospace;
+  font-size: 7.5pt;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.blocks-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5mm;
+  background: var(--code-bg);
+  border-radius: 2.6mm;
+}
+
+/* Contain-fit without a box to fill: width and height stay auto so the
+   capture keeps its shape, and the ceilings are the room in the stack (less
+   the panel padding, and the 6.6 mm heading above) and --print-max-w/-h, the
+   size at which build.py's resolution floor is reached. A capture is never
+   stretched. build.py's layout model (IMG_SLACK) assumes these numbers. */
+.blocks-image img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80mm;
+}
+
+@supports (width: 1cqw) {
+  .blocks-image img {
+    max-width: min(var(--print-max-w, 1000mm), calc(100cqw - 7mm));
+    max-height: min(var(--print-max-h, 1000mm), calc(100cqh - 14mm));
+  }
+}
+
+.blocks-image .placeholder {
+  height: 45mm;
+  border-radius: 1.6mm;
+}
+
+/* --- Side 2: blocks layouts ------------------------------------------- */
+
+/* Children read the blocks, so build.py (plan_blocks_layout) arranges each
+   blocks card so the block text prints at 8 pt or more where it can, and
+   marks the page body with the arrangement it chose:
+     (none)         standard: the program beside the wiring. An inline
+                    --code-share moves the divider right when that is all
+                    it takes.
+     .blocks-wide   a long one-row program across the whole side.
+     .blocks-tall   a long stack down the whole left column.
+   The "Blocks" and "Wiring" headings stay where every other card has them. */
+
+/* Wide: the program runs across the side under the headings; the note and
+   the wiring share the space below. The two panels hand their children to
+   the page grid, so each child brings the padding its panel used to give it,
+   and the right-hand cells draw the divider: from the page edge down to the
+   program, and from the program down to the footer. */
+.side-2 .page-body.blocks-wide {
+  grid-template-columns: var(--code-share) 1fr;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-areas:
+    "blocks-head wiring-head"
+    "blocks      blocks"
+    "note        wiring";
+  row-gap: 3.4mm;
+  padding: var(--pad) 0;
+}
+
+.blocks-wide > .panel {
+  display: contents;
+}
+
+.blocks-wide .panel-head {
+  grid-area: blocks-head;
+  padding: 0 6.5mm 0 calc(var(--pad) + 2mm);
+}
+
+.blocks-wide .wiring-panel > h1,
+.blocks-wide .wiring-grid {
+  border-left: 1px dashed var(--line);
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.blocks-wide .wiring-panel > h1 {
+  grid-area: wiring-head;
+  margin-top: calc(-1 * var(--pad));
+  padding-top: var(--pad);
+}
+
+/* build.py sets the program's width (--blocks-w) for the text size it aims
+   at, so the strip is no deeper than it needs to be. */
+.blocks-wide .code-stack {
+  grid-area: blocks;
+  padding: 0 var(--pad) 0 calc(var(--pad) + 2mm);
+  container-type: inline-size;
+}
+
+.blocks-wide .blocks-image img {
+  width: var(--blocks-w, auto);
+  max-width: 100%;
+  max-height: none;
+}
+
+/* The note explains the program, so it sits straight under it. */
+.blocks-wide .note {
+  grid-area: note;
+  align-self: start;
+  margin: 0 6.5mm 0 calc(var(--pad) + 2mm);
+}
+
+.blocks-wide .wiring-grid {
+  grid-area: wiring;
+  margin-bottom: calc(-1 * var(--pad));
+  padding-bottom: var(--pad);
+}
+
+/* Height is what a wide card is short of, so the board label stands upright
+   beside the diagram: the pill turned on its side, as slim as its text. */
+.blocks-wide .wiring-card {
+  grid-template-columns: 7.4mm 1fr;
+}
+
+.blocks-wide .wiring-label {
+  grid-row: 1;
+  padding: 2mm 1.4mm;
+  border-radius: 2.4mm;
+}
+
+.blocks-wide .wiring-image,
+.blocks-wide .pin-note {
+  grid-column: 2;
+}
+
+/* Tall: the program takes the left column's whole height, --code-share is
+   just wide enough for it, and the note moves under the wiring. When the
+   diagram stands upright too, the note sits beside it instead
+   (.note-beside), so the diagram keeps its height; --wiring-w is the
+   diagram's column. */
+.blocks-tall.note-beside .wiring-panel {
+  display: grid;
+  grid-template-columns: var(--wiring-w) 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "head   head"
+    "wiring note";
+  column-gap: 6.8mm;
+  row-gap: 3.4mm;
+}
+
+.blocks-tall.note-beside .wiring-panel > h1 {
+  grid-area: head;
+}
+
+.blocks-tall.note-beside .wiring-grid {
+  grid-area: wiring;
+}
+
+.blocks-tall.note-beside .note {
+  grid-area: note;
+  align-self: end;
+}
+
 /* --- Side 2: wiring --------------------------------------------------- */
 
 .wiring-panel {
   padding-left: 6.5mm;
 }
 
-/* Stacked cards suit landscape diagrams (a module wired straight onto a
-   header). Set `wiring_layout: columns` in the YAML when a diagram is portrait
-   — a Pi sitting below a breadboard is much taller than it is wide, and in a
-   stacked row it shrinks to a third of the available width. */
+/* A card with one diagram always uses the top-label `columns` style, at the
+   full panel width (build.py adds `columns single`): a vertical label would
+   take 13 mm from the width a landscape Pico diagram needs.
+   With more than one diagram, stacked cards suit landscape diagrams (a module
+   wired straight onto a header). Set `wiring_layout: columns` in the YAML when
+   a diagram is portrait — a Pi sitting below a breadboard is much taller than
+   it is wide, and in a stacked row it shrinks to a third of the width. */
 .wiring-grid {
   flex: 1;
   min-height: 0;

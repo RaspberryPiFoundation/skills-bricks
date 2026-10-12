@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Line sensor Skill Brick · Raspberry Pi</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect variant-pi">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="line-sensor-blocks.html">Pico blocks</a>      <a href="line-sensor-pico.html">Pico</a>    </div>    <a class="download" href="line-sensor-pi.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Line sensor</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>
+            <span class="tag tag-platform">Raspberry Pi</span>            <span class="tag">Input</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A line sensor tells light and dark surfaces apart underneath a moving project.</p>          <p>An infrared LED shines at the floor and a detector measures how much light bounces back.</p>          <p>Adjust the small potentiometer until its digital output changes reliably at the line edge.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-line-robot.png" alt="An industrial warehouse robot following a high-contrast floor guide line" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Warehouse guide-line robot</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read guide-line position</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is the vehicle drifting?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Correct the steering</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-lap-counter.png" alt="A handmade cardboard car crossing a black felt-tip finish strip" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Cardboard lap-counting car</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Cross dark finish strip</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is this a new lap?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Increase the lap count</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-line-sensor.png" alt="A KY-033 infrared line tracking sensor module with a blue adjustment potentiometer" />
+        </div>
+
+        <div class="part-strip" aria-label="Line sensor parts">          <div class="part"><strong>Infrared pair</strong><span>Faces the floor</span></div>          <div class="part"><strong>Adjuster</strong><span>Sets the threshold</span></div>          <div class="part"><strong>S</strong><span>Digital signal</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Line sensor &middot; Detect &middot; Raspberry Pi</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body">      <main class="panel code-panel"
+            style="--code-cols: 31; --code-rows: 5; --code-blocks: 1">
+        <div class="panel-head">
+          <h1>Code</h1>        </div>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import LineSensor
+
+line = LineSensor(23)
+
+on_line = line.is_active</code></pre>
+          </section>        </div>        <div class="note">Turn the blue adjuster until the module's output changes cleanly at the edge of the line.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-line-sensor.png" alt="Raspberry Pi 5 connected to a KY-033 line sensor" />
+            </div>
+            <div class="pin-note"><strong>GND</strong> (pin 6) &rarr; G, <strong>3V3</strong> (pin 1) &rarr; V+, <strong>GPIO 23</strong> (pin 16) &rarr; S</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Line sensor &middot; Detect &middot; Raspberry Pi</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

@@ -5,116 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Potentiometer Skill Brick</title>
   <link rel="stylesheet" href="skill-brick.css" />
+  <style>
+    .chooser {
+      width: min(46rem, calc(100% - 2rem));
+      margin: 2.5rem auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 11rem 1fr;
+      gap: 2rem;
+      align-items: center;
+      border-left: 0.5rem solid var(--accent);
+      border-radius: 0.65rem;
+      background: #ffffff;
+      box-shadow: 0 0.2rem 0.75rem rgb(0 0 0 / 9%);
+    }
+    .chooser-image img { display: block; width: 100%; height: auto; }
+    .chooser-strand {
+      margin: 0 0 0.4rem;
+      color: var(--accent-ink);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .chooser h1 { margin: 0 0 0.6rem; font-size: 2.2rem; }
+    .chooser p { margin: 0 0 1rem; font-size: 1rem; }
+    .chooser-list { margin: 0 0 1.2rem; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+    .chooser-list li { display: flex; gap: 0.6rem; align-items: stretch; }
+    .chooser-list a {
+      border-radius: 0.6rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    .chooser-card {
+      flex: 1;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border: 0.12rem solid var(--accent-line);
+      background: var(--accent-wash);
+    }
+    .chooser-card strong { font-size: 1.1rem; }
+    .chooser-card span { color: var(--muted); font-size: 0.9rem; }
+    .chooser-pdf {
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      color: #ffffff !important;
+      background: var(--accent-ink);
+      font-weight: 700;
+    }
+    .chooser-list a:hover,
+    .chooser-list a:focus-visible { outline: 0.18rem solid var(--accent); outline-offset: 0.15rem; }
+    .chooser-home a { color: var(--accent-ink); font-weight: 700; }
+    @media (max-width: 36rem) {
+      .chooser { grid-template-columns: 1fr; }
+      .chooser-image { width: 8rem; }
+      .chooser-card { flex-direction: column; gap: 0.15rem; }
+    }
+  </style>
 </head>
 <body class="strand-detect">
-
-  <nav class="download-toolbar" aria-label="Skill Brick downloads">
-    <a href="potentiometer.pdf" download>Download PDF</a>
-  </nav>
-
-  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
-  <section class="page side-1">
-    <div class="page-body">
-      <main class="panel">
-        <section class="description">
-          <h1>Potentiometer</h1>
-
-          <div class="tags" aria-label="Skill Brick tags">
-            <span class="tag tag-strand">Detect</span>            <span class="tag">Input</span>          </div>
-
-          <h2>What does it do?</h2>          <p>A potentiometer lets your code read how far a knob has been turned.</p>          <p>This small version is called a trimpot. Turning the blue knob moves a contact called the wiper, changing the voltage your board reads.</p>          <p>Use it to choose a speed, a brightness or a sound. Turn gently and stop at the ends. The marking 103 means 10 kΩ.</p>        </section>
-
-        <section class="uses-section">
-          <h2>Uses</h2>
-          <article class="use-card">
-            <div class="use-image">
-              <img src="images/use-security-light.png" alt="Adjustment controls beneath a mass-produced outdoor motion-sensor light" />
-            </div>
-            <div class="use-content">
-              <div class="use-title">Security-light adjustment</div>
-              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read sensitivity setting</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is movement strong enough?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Switch the light on</div>              </div>
-            </div>
-          </article>
-          <article class="use-card">
-            <div class="use-image">
-              <img src="images/use-alien-voice.png" alt="A homemade cardboard alien with a speaker mouth and a blue trimpot control" />
-            </div>
-            <div class="use-content">
-              <div class="use-title">Alien voice tuner</div>
-              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Knob position</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Should it rumble or squeak?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Rumble or squeak</div>              </div>
-            </div>
-          </article>        </section>
-      </main>
-
-      <aside class="panel component-panel">
-        <div class="image-box component-image">
-          <img src="images/component-potentiometer.png" alt="A blue square 10 kilohm 3386P trimpot with a ribbed blue knob and three pins" />
-        </div>
-
-        <div class="part-strip" aria-label="Potentiometer parts">          <div class="part"><strong>Knob</strong><span>Turn to adjust</span></div>          <div class="part"><strong>Outer pair</strong><span>Pins 1 and 3</span></div>          <div class="part"><strong>Wiper</strong><span>Pin 2, offset</span></div>        </div>
-      </aside>
+  <main class="chooser">
+    <div class="chooser-image">      <img src="images/component-potentiometer.png" alt="A blue square 10 kilohm 3386P trimpot with a ribbed blue knob and three pins" />    </div>
+    <div>
+      <p class="chooser-strand">Detect &middot; Build Lab Skill Brick</p>
+      <h1>Potentiometer</h1>
+      <p>Choose the card for your board.</p>
+      <ul class="chooser-list">        <li>
+          <a class="chooser-card" href="potentiometer-blocks.html"><strong>Pico blocks</strong><span>MicroLab blocks</span></a>
+          <a class="chooser-pdf" href="potentiometer-blocks.pdf" download aria-label="Pico blocks card as PDF">PDF</a>
+        </li>        <li>
+          <a class="chooser-card" href="potentiometer-pico.html"><strong>Pico</strong><span>MicroPython</span></a>
+          <a class="chooser-pdf" href="potentiometer-pico.pdf" download aria-label="Pico card as PDF">PDF</a>
+        </li>        <li>
+          <a class="chooser-card" href="potentiometer-pi.html"><strong>Raspberry Pi</strong><span>Python</span></a>
+          <a class="chooser-pdf" href="potentiometer-pi.pdf" download aria-label="Raspberry Pi card as PDF">PDF</a>
+        </li>      </ul>
+      <p class="chooser-home"><a href="../index.html">All Skill Bricks</a></p>
     </div>
-
-    <footer class="page-footer">
-  <div class="footer-meta">
-    <span class="footer-brick">Potentiometer &middot; Detect</span>
-    <span>Build Lab Skill Brick</span>
-  </div>
-  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
-       alt="Raspberry Pi Foundation" />
-</footer>
-  </section>
-
-  <!-- ===================== SIDE 2: how to build it ====================== -->
-  <section class="page side-2">
-    <div class="page-body">
-      <main class="panel code-panel" style="--code-cols: 31">
-        <h1>Code</h1>
-
-        <div class="code-stack">          <section class="code-block">
-            <h2>Raspberry Pi</h2>
-            <pre><code>from gpiozero import MCP3008
-
-pot = MCP3008(0, select_pin=22)
-
-setting = pot.value</code></pre>
-          </section>          <section class="code-block">
-            <h2>Raspberry Pi Pico</h2>
-            <pre><code>from picozero import Pot
-
-pot = Pot(26)
-
-setting = pot.value</code></pre>
-          </section>        </div>        <div class="note"><code class="inline-code">setting</code> runs from 0 to 1. Read <code class="inline-code">pot.value</code> again after turning; <code class="inline-code">pot.voltage</code> gives volts. The Pi needs the MCP3008 converter shown. Power the trimpot and converter from <strong>3V3</strong>.</div>      </main>
-
-      <aside class="panel wiring-panel">
-        <h1>Wiring</h1>
-
-        <div class="wiring-grid columns">          <section class="wiring-card">
-            <div class="wiring-label">Pi 5 + MCP3008</div>
-            <div class="image-box wiring-image">
-              <img src="images/pi5-potentiometer.png" alt="Raspberry Pi 5 connected to a 3.3 volt MCP3008 converter and a 3386P trimpot" />
-            </div>
-            <div class="pin-note">Wiper &rarr; <strong>CH0</strong>. CLK / DIN / DOUT / CS &rarr; <strong>GPIO 11 / 10 / 9 / 22</strong>. Chip notch faces right.</div>
-          </section>          <section class="wiring-card">
-            <div class="wiring-label">Pico</div>
-            <div class="image-box wiring-image">
-              <img src="images/pico-potentiometer.png" alt="Raspberry Pi Pico connected to a 3386P trimpot with its offset wiper on GP26" />
-            </div>
-            <div class="pin-note">Pin <strong>1</strong> &rarr; <strong>GND</strong> · <strong>2</strong> (wiper) &rarr; <strong>GP26</strong> · <strong>3</strong> &rarr; <strong>3V3</strong>. Each pin has its own breadboard row.</div>
-          </section>        </div>
-      </aside>
-    </div>
-
-    <footer class="page-footer">
-  <div class="footer-meta">
-    <span class="footer-brick">Potentiometer &middot; Detect</span>
-    <span>Build Lab Skill Brick</span>
-  </div>
-  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
-       alt="Raspberry Pi Foundation" />
-</footer>
-  </section>
-
+  </main>
 </body>
 </html>

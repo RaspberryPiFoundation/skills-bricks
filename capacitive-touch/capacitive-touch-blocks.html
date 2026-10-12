@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capacitive touch Skill Brick · Pico blocks</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect variant-blocks">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="capacitive-touch-pico.html">Pico</a>      <a href="capacitive-touch-pi.html">Raspberry Pi</a>    </div>    <a class="download" href="capacitive-touch-blocks.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Capacitive touch</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>
+            <span class="tag tag-platform">Pico blocks</span>            <span class="tag">Input</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A capacitive touch sensor notices when a finger comes close to its metal pad.</p>          <p>It detects the tiny change in electric charge caused by your body, so no moving parts are needed.</p>          <p>Use it anywhere a project needs a hidden, wipe-clean or feather-light button.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-touch-lamp.png" alt="A lit bedside touch lamp with a smooth metal sensing base" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Touch lamp</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Finger touches the pad</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is the lamp already on?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Toggle the light</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-banana-piano.png" alt="One banana wired as a touch key on a homemade cardboard piano" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Banana piano</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>A banana is touched</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which note should play?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Play the note</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-capacitive-touch.png" alt="A blue TTP223 capacitive touch sensor module with three header pins" />
+        </div>
+
+        <div class="part-strip" aria-label="Capacitive touch parts">          <div class="part"><strong>Touch pad</strong><span>The large metal spiral</span></div>          <div class="part"><strong>SIG</strong><span>Digital output</span></div>          <div class="part"><strong>VCC and GND</strong><span>3.3 V power</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Capacitive touch &middot; Detect &middot; Pico blocks</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body blocks-standard">      <main class="panel code-panel blocks-panel">
+        <div class="panel-head">
+          <h1>Blocks</h1>
+        </div>
+
+        <div class="code-stack">
+          <section class="code-block blocks-block">
+            <h2>MicroLab <a class="blocks-url" href="https://getmicrolab.com">getmicrolab.com</a></h2>
+            <div class="blocks-image">
+              <img src="images/blocks-capacitive-touch.png" alt="MicroLab blocks: when Run is clicked, forever, if pin GP17 (pin 22) is ON turn the built-in light on, else off" style="--print-max-w: 149.9mm; --print-max-h: 155.4mm" data-width-1x="354" data-font-px="17.3333" />
+            </div>
+          </section>
+        </div>        <div class="note">The Pico's own light comes on while you touch the pad.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-capacitive-touch.png" alt="Raspberry Pi Pico connected to a TTP223 capacitive touch module" data-life-mm="82.5" />
+            </div>
+            <div class="pin-note"><strong>GND</strong> (pin 23) &rarr; GND, <strong>3V3 OUT</strong> (pin 36) &rarr; VCC, <strong>GP17</strong> (pin 22) &rarr; SIG</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Capacitive touch &middot; Detect &middot; Pico blocks</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

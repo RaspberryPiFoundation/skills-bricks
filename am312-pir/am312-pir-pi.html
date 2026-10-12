@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AM312 PIR Skill Brick · Raspberry Pi</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect variant-pi">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="am312-pir-blocks.html">Pico blocks</a>      <a href="am312-pir-pico.html">Pico</a>    </div>    <a class="download" href="am312-pir-pi.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>AM312 PIR</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>
+            <span class="tag tag-platform">Raspberry Pi</span>            <span class="tag">Motion</span>            <span class="tag">Mini PIR</span>          </div>
+
+          <h2>What does it do?</h2>          <p>An <strong>AM312</strong> is a tiny PIR sensor that notices warm bodies moving nearby.</p>          <p>PIR means passive infrared. Its faceted lens divides the view into zones, so a person or animal moving between them makes the output switch on.</p>          <p>The complete AM312 module runs from 3V3 and uses very little power. Its sensitivity and roughly two-second output pulse are fixed.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-wardrobe-light.png" alt="A motion-activated light glowing inside an open wardrobe" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Wardrobe light</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Movement in the wardrobe</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is someone reaching in?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Turn on the light</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-dragon-treasure-alarm.png" alt="A handmade cardboard dragon using a tiny PIR sensor to guard a pile of shiny treasure" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Dragon treasure alarm</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Movement near the hoard</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is someone sneaking closer?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Make the dragon roar</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-am312-pir.png" alt="A tiny AM312 PIR motion sensor module with a white domed lens, green circuit board and three pins" />
+        </div>
+
+        <div class="part-strip" aria-label="AM312 PIR parts">          <div class="part"><strong>Lens</strong><span>Splits the view into zones</span></div>          <div class="part"><strong>VCC</strong><span>Power from 3V3</span></div>          <div class="part"><strong>OUT</strong><span>High on movement</span></div>          <div class="part"><strong>GND</strong><span>Ground</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">AM312 PIR &middot; Detect &middot; Raspberry Pi</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body">      <main class="panel code-panel"
+            style="--code-cols: 33; --code-rows: 5; --code-blocks: 1">
+        <div class="panel-head">
+          <h1>Code</h1>        </div>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import MotionSensor
+
+pir = MotionSensor(14)
+
+moved = pir.motion_detected</code></pre>
+          </section>        </div>        <div class="note"><code class="inline-code">moved</code> is True or False. Use <code class="inline-code">pir.when_motion</code> and <code class="inline-code">pir.when_no_motion</code> to run functions when it changes. The AM312 has no sensitivity or delay dials; OUT normally stays high for about two seconds after movement.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-am312-pir.png" alt="AM312 mini PIR sensor wired straight to 3V3, GPIO14 and ground on a Raspberry Pi 5" />
+            </div>
+            <div class="pin-note"><strong>VCC</strong> &rarr; 3V3 (pin 1); <strong>OUT</strong> &rarr; GPIO14 (pin 8); <strong>GND</strong> &rarr; GND (pin 14).</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">AM312 PIR &middot; Detect &middot; Raspberry Pi</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

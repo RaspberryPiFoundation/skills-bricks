@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stepper motor Skill Brick · Raspberry Pi</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do variant-pi">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="stepper-pico.html">Pico</a>    </div>    <a class="download" href="stepper-pi.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Stepper motor</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>
+            <span class="tag tag-platform">Raspberry Pi</span>            <span class="tag">Output</span>            <span class="tag">Movement</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A stepper motor turns in small, repeatable steps instead of spinning freely.</p>          <p>Energising its coils in sequence moves the shaft one step at a time and holds its position.</p>          <p>The ULN2003 board supplies the coil current for the common 28BYJ-48 motor shown here.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-pointer-dial.png" alt="A desktop 3D printer positioning its print head above the build plate" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">3D printer positioning</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read next print position</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>How many steps are needed?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Move the print head</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-snack-lift.png" alt="A two-storey cardboard lift moving one snack with a motor-driven spool" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Snack lift</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Snack request arrives</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which floor needs it?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Step lift into place</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-stepper.png" alt="A 28BYJ-48 stepper motor beside its ULN2003 driver board" />
+        </div>
+
+        <div class="part-strip" aria-label="Stepper motor parts">          <div class="part"><strong>Output shaft</strong><span>Moves in measured steps</span></div>          <div class="part"><strong>Five-wire plug</strong><span>Connects to the driver</span></div>          <div class="part"><strong>IN1 to IN4</strong><span>Coil sequence</span></div>          <div class="part"><strong>5V and GND</strong><span>Driver power</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Stepper motor &middot; Do &middot; Raspberry Pi</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body">      <main class="panel code-panel"
+            style="--code-cols: 55; --code-rows: 11; --code-blocks: 1">
+        <div class="panel-head">
+          <h1>Code</h1>        </div>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi</h2>
+            <pre><code>from gpiozero import OutputDevice
+from time import sleep
+
+coils = [OutputDevice(pin) for pin in (19, 13, 27, 17)]
+sequence = ((1, 0, 0, 0), (0, 1, 0, 0),
+            (0, 0, 1, 0), (0, 0, 0, 1))
+
+for pattern in sequence * 512:
+    for coil, value in zip(coils, pattern):
+        coil.value = value
+    sleep(0.002)</code></pre>
+          </section>        </div>        <div class="note"><code class="inline-code">sequence * 512</code> runs about one full turn. Reverse the sequence to turn the other way.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Raspberry Pi 5</div>
+            <div class="image-box wiring-image">
+              <img src="images/pi5-stepper.png" alt="Raspberry Pi 5 connected to a ULN2003 driver and 28BYJ-48 stepper motor" />
+            </div>
+            <div class="pin-note">IN1-IN4 &rarr; GPIO <strong>19, 13, 27, 17</strong> (pins 35, 33, 13, 11); driver &rarr; <strong>5V</strong> (pin 4) and <strong>GND</strong> (pin 39)</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Stepper motor &middot; Do &middot; Raspberry Pi</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

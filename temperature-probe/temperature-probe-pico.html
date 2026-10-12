@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temperature probe Skill Brick · Pico</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect variant-pico">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="temperature-probe-pi.html">Raspberry Pi</a>    </div>    <a class="download" href="temperature-probe-pico.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Temperature probe</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>
+            <span class="tag tag-platform">Pico</span>            <span class="tag">DS18B20</span>            <span class="tag">Digital</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A <strong>DS18B20</strong> measures temperature and sends a digital reading in degrees Celsius.</p>          <p>This probe has a sealed metal tip on a cable with three wires. Check the supplier's pinout; wire colours can vary.</p>          <p>Only the sealed probe goes in water. Keep the board and all wire connections dry.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-aquarium.png" alt="A commercial digital thermometer monitoring the water in an aquarium" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Aquarium temperature alarm</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure tank temperature</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is it too cold?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Show a warning</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-penguin-bath.png" alt="A homemade cardboard penguin with a warning LED beside a small pretend bath" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Penguin bath alarm</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure bath temperature</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is it too warm?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Light a warning LED</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-temperature-probe.png" alt="A DS18B20 probe with a sealed metal tip, black cable and three wire tails" />
+        </div>
+
+        <div class="part-strip" aria-label="Temperature probe parts">          <div class="part"><strong>VDD</strong><span>Power from 3V3</span></div>          <div class="part"><strong>DQ</strong><span>Digital data</span></div>          <div class="part"><strong>GND</strong><span>Ground</span></div>          <div class="part"><strong>4.7 kΩ</strong><span>Resistor from DQ to 3V3</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Temperature probe &middot; Detect &middot; Pico</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body">      <main class="panel code-panel"
+            style="--code-cols: 41; --code-rows: 12; --code-blocks: 1">
+        <div class="panel-head">
+          <h1>Code</h1>        </div>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from machine import Pin
+import onewire, ds18x20
+from time import sleep_ms
+
+bus = onewire.OneWire(Pin(22))
+sensor = ds18x20.DS18X20(bus)
+probes = sensor.scan()
+assert probes, "Check probe wiring"
+sensor.convert_temp()
+sleep_ms(750)
+temperature = sensor.read_temp(probes[0])
+print(temperature)</code></pre>
+          </section>        </div>        <div class="note">Repeat the conversion and 750 ms wait for each new reading.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-temperature-probe.png" alt="DS18B20 probe wired to 3V3 OUT pin 36, GP22 pin 29 and GND pin 28, with a 4.7 kilohm pull-up resistor" />
+            </div>
+            <div class="pin-note"><strong>VDD</strong> &rarr; 3V3 OUT (pin 36); <strong>DQ</strong> &rarr; GP22 (pin 29); <strong>GND</strong> &rarr; GND (pin 28). <strong>4.7 kΩ</strong> between DQ and 3V3.</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Temperature probe &middot; Detect &middot; Pico</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temperature sensor Skill Brick · Pico blocks</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-detect variant-blocks">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="temperature-sensor-pico.html">Pico</a>      <a href="temperature-sensor-pi.html">Raspberry Pi</a>    </div>    <a class="download" href="temperature-sensor-blocks.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Temperature sensor</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Detect</span>
+            <span class="tag tag-platform">Pico blocks</span>            <span class="tag">Input</span>            <span class="tag">Analogue</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A TMP36 turns temperature into a changing voltage that a program can measure.</p>          <p>Its output rises by 10 millivolts for every degree Celsius, with 0.5 V representing 0 °C.</p>          <p>The Pico reads that voltage directly; the Raspberry Pi uses an MCP3008 analogue-to-digital converter.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-propagator.png" alt="An open kitchen refrigerator keeping food cool" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Refrigerator cooling</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure fridge temperature</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Is it too warm?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Increase the cooling</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-soup-meter.png" alt="A homemade pointer gauge measuring the outside of a soup bowl" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Soup drama meter</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Measure bowl surface</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Which drama level fits?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Move the drama pointer</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-temperature-sensor.png" alt="A TMP36 temperature sensor in a three-legged TO-92 package" />
+        </div>
+
+        <div class="part-strip" aria-label="Temperature sensor parts">          <div class="part"><strong>Flat face</strong><span>Use it to identify the pins</span></div>          <div class="part"><strong>+Vs</strong><span>Left pin</span></div>          <div class="part"><strong>Vout</strong><span>Centre pin</span></div>          <div class="part"><strong>GND</strong><span>Right pin</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Temperature sensor &middot; Detect &middot; Pico blocks</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body blocks-standard" style="--code-share: 58.2%">      <main class="panel code-panel blocks-panel">
+        <div class="panel-head">
+          <h1>Blocks</h1>
+        </div>
+
+        <div class="code-stack">
+          <section class="code-block blocks-block">
+            <h2>MicroLab <a class="blocks-url" href="https://getmicrolab.com">getmicrolab.com</a></h2>
+            <div class="blocks-image">
+              <img src="images/blocks-temperature-sensor.png" alt="MicroLab blocks: when Run is clicked, forever set reading to the sensor on GP28 (pin 34) from 0 to 100, say reading × 3.3 − 50 rounded, then wait 1 second" style="--print-max-w: 240.5mm; --print-max-h: 136.7mm" data-width-1x="568" data-font-px="17.3333" />
+            </div>
+          </section>
+        </div>        <div class="note">Shows °C in steps of about 3 °C. Make a variable called reading first.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-temperature-sensor.png" alt="TMP36 temperature sensor connected to Raspberry Pi Pico" data-life-mm="82.5" />
+            </div>
+            <div class="pin-note">TMP36 <strong>+Vs</strong> &rarr; 3V3 OUT (pin 36), <strong>Vout</strong> &rarr; GP28 (pin 34), <strong>GND</strong> &rarr; GND (pin 33)</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Temperature sensor &middot; Detect &middot; Pico blocks</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>

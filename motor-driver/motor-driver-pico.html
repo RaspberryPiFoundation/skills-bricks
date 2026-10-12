@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motor driver Skill Brick · Pico</title>
+  <link rel="stylesheet" href="skill-brick.css" />
+</head>
+<body class="strand-do variant-pico">
+
+  <nav class="download-toolbar" aria-label="Skill Brick downloads">    <div class="toolbar-siblings">
+      <span>Also for</span>      <a href="motor-driver-blocks.html">Pico blocks</a>      <a href="motor-driver-pi.html">Raspberry Pi</a>    </div>    <a class="download" href="motor-driver-pico.pdf" download>Download PDF</a>
+  </nav>
+
+  <!-- ===================== SIDE 1: what it is, what it's for ============ -->
+  <section class="page side-1">
+    <div class="page-body">
+      <main class="panel">
+        <section class="description">
+          <h1>Motor driver</h1>
+
+          <div class="tags" aria-label="Skill Brick tags">
+            <span class="tag tag-strand">Do</span>
+            <span class="tag tag-platform">Pico</span>            <span class="tag">Output</span>            <span class="tag">Movement</span>          </div>
+
+          <h2>What does it do?</h2>          <p>A motor driver lets a low-power GPIO control a motor that needs more current.</p>          <p>The L293D contains H-bridges that can send current through a motor in either direction.</p>          <p>Two input pins choose forwards, backwards or stop, while the chip handles the motor current.</p>        </section>
+
+        <section class="uses-section">
+          <h2>Uses</h2>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-robot-wheel.png" alt="A car door with its electric side window halfway open" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Electric car window</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Read window switch</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Can it move safely?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Drive requested direction</div>              </div>
+            </div>
+          </article>
+          <article class="use-card">
+            <div class="use-image">
+              <img src="images/use-flag-waver.png" alt="A handmade cardboard machine waving a paper flag with a DC motor" />
+            </div>
+            <div class="use-content">
+              <div class="use-title">Tiny flag waver</div>              <div class="flow-line">                <div class="flow-step flow-terminator"><strong>Detect</strong>Count score-button presses</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-decision"><strong>Decide</strong>Has the target been reached?</div>                <div class="arrow" aria-hidden="true">&rarr;</div>                <div class="flow-step flow-terminator"><strong>Do</strong>Wave the flag</div>              </div>
+            </div>
+          </article>        </section>
+      </main>
+
+      <aside class="panel component-panel">
+        <div class="image-box component-image">
+          <img src="images/component-motor-driver.png" alt="An L293D sixteen-pin motor driver integrated circuit" />
+        </div>
+
+        <div class="part-strip" aria-label="Motor driver parts">          <div class="part"><strong>Notch</strong><span>Identifies pin 1</span></div>          <div class="part"><strong>IN1 and IN2</strong><span>Direction controls</span></div>          <div class="part"><strong>OUT1 and OUT2</strong><span>Connect to the motor</span></div>          <div class="part"><strong>Enable</strong><span>Held high in this circuit</span></div>        </div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Motor driver &middot; Do &middot; Pico</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+  <!-- ===================== SIDE 2: how to build it ====================== -->
+  <section class="page side-2">    <div class="page-body">      <main class="panel code-panel"
+            style="--code-cols: 26; --code-rows: 5; --code-blocks: 1">
+        <div class="panel-head">
+          <h1>Code</h1>        </div>
+
+        <div class="code-stack">          <section class="code-block">
+            <h2>Raspberry Pi Pico</h2>
+            <pre><code>from picozero import Motor
+
+motor = Motor(14, 15)
+
+motor.forward()</code></pre>
+          </section>        </div>        <div class="note">This card powers one small 5 V motor from the board's 5 V rail. Use a separate motor supply for larger motors, with the grounds joined.</div>      </main>
+
+      <aside class="panel wiring-panel">
+        <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
+            <div class="wiring-label">Pico</div>
+            <div class="image-box wiring-image">
+              <img src="images/pico-motor-driver.png" alt="L293D and DC motor connected to Raspberry Pi Pico on a breadboard" data-life-mm="104.5" />
+            </div>
+            <div class="pin-note"><strong>GP14</strong> (pin 19) &rarr; IN1, <strong>GP15</strong> (pin 20) &rarr; IN2; OUT1 and OUT2 &rarr; motor; <strong>VBUS</strong> (pin 40), <strong>GND</strong> (pin 18)</div>
+          </section>        </div>      </aside>
+    </div>
+
+    <footer class="page-footer">
+  <div class="footer-meta">
+    <span class="footer-brick">Motor driver &middot; Do &middot; Pico</span>
+    <span>Build Lab Skill Brick</span>
+  </div>
+  <img class="footer-logo" src="assets/rpf-logo-lockup.png"
+       alt="Raspberry Pi Foundation" />
+</footer>
+  </section>
+
+</body>
+</html>
