@@ -50,7 +50,7 @@
           <img src="images/component-servo.png" alt="A blue positional microservo with a white horn and a three-wire plug" />
         </div>
 
-        <div class="part-strip" aria-label="Servo motor parts">          <div class="part"><strong>Horn</strong><span>Attach a light moving part</span></div>          <div class="part"><strong>Signal</strong><span>Usually orange, yellow or white</span></div>          <div class="part"><strong>Power</strong><span>Usually red; separate supply</span></div>          <div class="part"><strong>Ground</strong><span>Brown or black; join grounds</span></div>        </div>
+        <div class="part-strip" aria-label="Servo motor parts">          <div class="part"><strong>Horn</strong><span>Attach a light moving part</span></div>          <div class="part"><strong>Signal</strong><span>Usually orange, yellow or white</span></div>          <div class="part"><strong>Power</strong><span>Usually red; about 5 V</span></div>          <div class="part"><strong>Ground</strong><span>Brown or black; join grounds</span></div>        </div>
       </aside>
     </div>
 
@@ -83,9 +83,9 @@
         <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
             <div class="wiring-label">Pico</div>
             <div class="image-box wiring-image">
-              <img src="images/pico-servo.png" alt="A servo with signal on GP7 and a separate four-AA NiMH battery pack sharing ground with the seated Pico" data-life-mm="128.0" />
+              <img src="images/pico-servo.png" alt="A small SG90-size servo powered from the seated Pico&#x27;s VBUS pin through the bottom + rail, with signal on GP7 and ground through the − rail, and no battery pack" data-life-mm="82.5" />
             </div>
-            <div class="pin-note"><strong>GP7</strong> (pin 10) &rarr; signal; <strong>GND</strong> (pin 13) &rarr; − rail &rarr; servo/pack −. Use <strong>4×AA NiMH (4.8 V)</strong>; USB powers the board. Keep pack + off board power pins.</div>
+            <div class="pin-note"><strong>GP7</strong> (pin 10) &rarr; signal; <strong>VBUS</strong> (pin 40) &rarr; + rail &rarr; servo red; <strong>GND</strong> (pin 13) &rarr; − rail &rarr; servo −. Small <strong>SG90-size</strong> servo only: USB powers it.</div>
           </section>        </div>      </aside>
     </div>
 
