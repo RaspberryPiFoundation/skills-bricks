@@ -84,9 +84,9 @@ sleep(2)</code></pre>
         <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
             <div class="wiring-label">Raspberry Pi 5</div>
             <div class="image-box wiring-image">
-              <img src="images/pi5-servo.png" alt="A servo powered by a separate four-AA NiMH pack, with signal on GPIO16 and grounds joined through the Pi header" />
+              <img src="images/pi5-servo.png" alt="A small SG90-size servo powered from the Raspberry Pi&#x27;s 5V header pin through the top + rail, with signal on GPIO16 and ground from a GND pin, and no battery pack" />
             </div>
-            <div class="pin-note"><strong>GPIO16</strong> (pin 36) &rarr; signal; <strong>GND</strong> pins 34/39 &rarr; servo/pack −. <strong>4×AA NiMH (4.8 V)</strong> pack + &rarr; servo red.</div>
+            <div class="pin-note"><strong>GPIO16</strong> (pin&nbsp;36) &rarr; signal; <strong>5V</strong> (pin&nbsp;4) &rarr; top +&nbsp;rail &rarr; servo red; <strong>GND</strong> (pin&nbsp;34) &rarr; servo&nbsp;−. Small <strong>SG90-size</strong> servo only: the Pi powers it.</div>
           </section>        </div>      </aside>
     </div>
 
