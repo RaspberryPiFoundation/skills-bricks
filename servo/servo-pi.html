@@ -50,7 +50,7 @@
           <img src="images/component-servo.png" alt="A blue positional microservo with a white horn and a three-wire plug" />
         </div>
 
-        <div class="part-strip" aria-label="Servo motor parts">          <div class="part"><strong>Horn</strong><span>Attach a light moving part</span></div>          <div class="part"><strong>Signal</strong><span>Usually orange, yellow or white</span></div>          <div class="part"><strong>Power</strong><span>Usually red; separate supply</span></div>          <div class="part"><strong>Ground</strong><span>Brown or black; join grounds</span></div>        </div>
+        <div class="part-strip" aria-label="Servo motor parts">          <div class="part"><strong>Horn</strong><span>Attach a light moving part</span></div>          <div class="part"><strong>Signal</strong><span>Usually orange, yellow or white</span></div>          <div class="part"><strong>Power</strong><span>Usually red; about 5 V</span></div>          <div class="part"><strong>Ground</strong><span>Brown or black; join grounds</span></div>        </div>
       </aside>
     </div>
 
@@ -84,9 +84,9 @@ sleep(2)</code></pre>
         <h1>Wiring</h1>        <div class="wiring-grid columns single">          <section class="wiring-card">
             <div class="wiring-label">Raspberry Pi 5</div>
             <div class="image-box wiring-image">
-              <img src="images/pi5-servo.png" alt="A servo powered by a separate four-AA NiMH pack, with signal on GPIO16 and grounds joined through the Pi header" />
+              <img src="images/pi5-servo.png" alt="A small SG90-size servo powered from the Raspberry Pi&#x27;s 5V header pin, with signal on GPIO16 and ground from a GND pin, wired with three jumper wires from the servo&#x27;s plug straight to the header, and no breadboard or battery pack" />
             </div>
-            <div class="pin-note"><strong>GPIO16</strong> (pin 36) &rarr; signal; <strong>GND</strong> pins 34/39 &rarr; servo/pack −. <strong>4×AA NiMH (4.8 V)</strong> pack + &rarr; servo red.</div>
+            <div class="pin-note"><strong>GPIO16</strong>&nbsp;(pin&nbsp;36) &rarr; signal; <strong>5V</strong>&nbsp;(pin&nbsp;4) &rarr; servo red; <strong>GND</strong>&nbsp;(pin&nbsp;34) &rarr; servo&nbsp;−. Small <strong>SG90-size</strong> servo only: the Pi powers it.</div>
           </section>        </div>      </aside>
     </div>
 
